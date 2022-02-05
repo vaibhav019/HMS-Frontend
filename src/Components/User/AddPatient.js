@@ -1,0 +1,174 @@
+import React ,{useState,useEffect,Fragment}  from 'react'
+import { Container, Form,Row,Col,Button } from 'react-bootstrap';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+
+
+
+export default function AddPatient() {
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   // eslint-disable-next-line no-console
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+  const postdata=(data)=>{
+    axios.post("https://localhost:44314/api/Patients",data).then(   //${base_url}\api\Registers
+      (response)=>{
+        //success
+        console.log(response);
+        toast.success("Patient Record added Successfully");
+        console.log("Patient Record added Successfully");
+      },(error)=>{
+        //error
+        console.log(error);
+        console.log("failed +++++++++++++++++++")
+      }
+    );
+  };
+    const [patient,setpatient]=useState({});
+    const handleSubmit = (e) => {
+      console.log(patient,"+++++++++++++++++++");
+      postdata(patient);
+      e.preventDefault();
+      //const data = new FormData(e.currentTarget);
+      // eslint-disable-next-line no-console
+      // console.log({
+      //   email: data.get('email'),
+      //   password: data.get('password'),
+      // });
+    };
+
+
+  return (
+    
+    <div>
+    <Container fluid className='mb-3 p-3'> <h4 >Add Patient </h4></Container>
+    
+
+    <Container fluid className="ml-3" >
+    <Form onSubmit={handleSubmit}>
+    <Row>
+   
+    <Col sm={4}>
+    <Form.Group className="mb-3" controlId="FirstName">
+     
+      <Form.Control type="text" placeholder=" Enter First Name" id="FirstName" name="FirstName" onChange={(e)=>{
+        setpatient({...patient,FirstName:e.target.value})
+      }}/>
+    </Form.Group>
+    </Col>
+  
+    <Col sm={4}>
+    <Form.Group className="mb-3" controlId="LastName">
+   
+      <Form.Control type="text" placeholder="Enter Last Name" id="LastName" name="LastName"
+      onChange={(e)=>{
+        setpatient({...patient,LastName:e.target.value})
+      }}/>
+    </Form.Group>
+    </Col>
+    <Col sm={4}></Col>
+    
+    </Row>
+
+    <Row>
+    <Col sm={4}>
+    <Form.Group className="mb-3" controlId="Email">
+   
+      <Form.Control type="email" placeholder="Enter Email" id="Email" name="Email" 
+      onChange={(e)=>{
+        setpatient({...patient,Email:e.target.value})
+      }}/>
+    </Form.Group>
+    </Col>
+    
+    <Col sm={4}><Form.Group className="mb-3" controlId="ContactNumber">
+   
+    <Form.Control type="number" placeholder=" Enter Contact no." id="ContactNumber" name="ContactNumber" 
+    onChange={(e)=>{
+      setpatient({...patient,ContactNumber:e.target.value})
+    }}/>
+  </Form.Group> </Col>
+  <Col sm={4}></Col>
+    </Row>
+    <Row>
+   
+    <Col sm={4}>
+    <Form.Group className="mb-3" controlId="Age">
+     
+      <Form.Control type="number" placeholder=" Enter Age" id="Age" name="Age" 
+      onChange={(e)=>{
+        setpatient({...patient,Age:e.target.value})
+      }}/>
+    </Form.Group>
+    </Col>
+  
+    <Col sm={4}>
+    <Form.Group className="mb-3" controlId="gender">
+   
+      <Form.Control type="text" placeholder="Enter Gender" id="Gender" name="gender" 
+      onChange={(e)=>{
+        setpatient({...patient,gender:e.target.value})
+      }}/>
+    </Form.Group>
+    </Col>
+    <Col sm={4}></Col>
+    
+    </Row>
+    <Row>
+    <Col sm={8}>
+  
+    <Form.Group className="mb-3" controlId="Address">
+    
+    <Form.Control as="textarea" rows={2} id="Address"  placeholder="Enter Address" name="Address" 
+    onChange={(e)=>{
+      setpatient({...patient,Address:e.target.value})
+    }}/>
+  </Form.Group>
+    </Col>
+    <Col sm={4}></Col>
+    </Row>
+    <Row>
+    <Col sm={8}>
+    <Form.Group className="mb-3" controlId="Symptoms">
+    
+    <Form.Control as="textarea" rows={2} id="Symptoms"  placeholder="Enter Symptoms" name="Symptoms" onChange={(e)=>{
+      setpatient({...patient,Symptoms:e.target.value})
+    }}/>
+  </Form.Group>
+    </Col>
+    <Col sm={4}></Col>
+    </Row>
+    <Row>
+    <Col sm={8}>
+    <Form.Group className="mb-3" controlId="Ward">
+    
+    <Form.Select aria-label="Select Ward" name="Ward"  onChange={(e)=>{
+      setpatient({...patient,Ward:e.target.value})
+    }} >
+    <option>Select Ward</option>
+    <option value="1">General</option>
+    <option value="2">Special</option>
+    <option value="3">ICCU</option>
+  </Form.Select>
+    </Form.Group>
+    </Col>
+    <Col sm={4}></Col>
+    </Row>
+    <Row>
+    <Col>  <Button type="submit" variant="primary">Submit</Button>{' '}<Button type="reset" variant="primary">Reset</Button>{' '}</Col>
+    <Col></Col>
+    </Row>
+
+  </Form>
+    </Container>
+    
+    
+    </div>
+  )
+}

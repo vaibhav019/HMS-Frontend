@@ -21,7 +21,8 @@ export default function AddPatient() {
       (response)=>{
         //success
         console.log(response);
-        toast.success("Patient Record added Successfully");
+        //toast.success("Patient Record added Successfully");
+        alert("patient data added");
         console.log("Patient Record added Successfully");
       },(error)=>{
         //error

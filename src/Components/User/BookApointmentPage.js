@@ -1,15 +1,65 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Container, Form,Row,Col,Button } from 'react-bootstrap';
+import axios from 'axios';
 export default function BookApointmentPage() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   // eslint-disable-next-line no-console
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
+
+const [Name,setName]=useState([]);
+const [Speciality,setSpeciality]=useState("Eye Specialist");
+
+const getdoctor=(Speciality)=>{
+  console.log(Speciality,"+======================================")
+  axios.get(`https://localhost:44314/api/appointments/getdoctors?search=${Speciality}`)
+  .then((response) => {
+ console.log(response)
+ setName(response);
+console.log(Name);
+    // Code for handling the response
+  })
+  .catch((error) => {
+   console.log(error)
+    // Code for handling the error
+  })
+}
+  const postdata=(data)=>{
+    axios.post("https://localhost:44314/api/Patients",data).then(   //${base_url}\api\Registers
+      (response)=>{
+        //success
+        console.log(response);
+        //toast.success("Patient Record added Successfully");
+        alert("patient data added");
+        console.log("Patient Record added Successfully");
+      },(error)=>{
+        //error
+        console.log(error);
+        console.log("failed +++++++++++++++++++")
+      }
+    );
   };
+    const [appointment,setappointment]=useState({});
+    const handleSubmit = (e) => {
+      console.log(appointment,"+++++++++++++++++++");
+      postdata(appointment);
+      e.preventDefault();
+      //const data = new FormData(e.currentTarget);
+      // eslint-disable-next-line no-console
+      // console.log({
+      //   email: data.get('email'),
+      //   password: data.get('password'),
+      // });
+    };
+
+
+    
   return (
     
     <div>
@@ -19,87 +69,124 @@ export default function BookApointmentPage() {
     <Container>
     <Form onSubmit={handleSubmit}>
     <Row>
-   
-    <Col sm={4}>
-    <Form.Group className="mb-3" controlId="firstName">
+    <Col sm={2}>
+    <Form.Label>Patient name:</Form.Label>
+    </Col>
+    <Col sm={6}>
+    <Form.Group className="mb-3" controlId="PatientName">
      
-      <Form.Control type="text" placeholder=" Enter First Name" id="firstName"/>
+      <Form.Control type="text" placeholder=" Enter Patient Name" id="PatientName" name="PatientName" onChange={(e)=>{
+        setappointment({...appointment,PatientName:e.target.value})
+      }}/>
     </Form.Group>
     </Col>
   
-    <Col sm={4}>
-    <Form.Group className="mb-3" controlId="lastName">
-   
-      <Form.Control type="email" placeholder="Enter Last Name" id="lastName"/>
-    </Form.Group>
-    </Col>
+    
     <Col sm={4}></Col>
     
     </Row>
 
-    <Row>
-    <Col sm={4}>
-    <Form.Group className="mb-3" controlId="email">
    
-      <Form.Control type="email" placeholder="Enter Email" id="lastName"/>
+    <Row>
+   
+    <Col sm={2}>
+   <Form.Label>Email:</Form.Label>
+    </Col>
+  
+    <Col sm={6}>
+    <Form.Group className="mb-3" controlId="Email">
+   
+      <Form.Control type="email" placeholder="Enter Email" id="Email" name="Email" 
+      onChange={(e)=>{
+        setappointment({...appointment,Email:e.target.value})
+      }}/>
     </Form.Group>
     </Col>
+    <Col sm={4}></Col>
     
-    <Col sm={4}><Form.Group className="mb-3" controlId="phno">
-   
-    <Form.Control type="number" placeholder=" Enter Phone no." id="phno"/>
-  </Form.Group> </Col>
-  <Col sm={4}></Col>
     </Row>
     <Row>
-   
-    <Col sm={4}>
-    <Form.Group className="mb-3" controlId="age">
+    <Col sm={2}>
+  <Form.Label>Speciality</Form.Label>
+    </Col>
+    <Col sm={6}> <Form.Group className="mb-3" controlId="ward" >
+    
+    <Form.Select aria-label="Default select example" onChange={(e)=>{
+      setappointment({...appointment,Speciality:e.target.value})
+      setSpeciality(e.target.value)
+      getdoctor(Speciality)
      
-      <Form.Control type="number" placeholder=" Enter Age" id="age"/>
-    </Form.Group>
+    }}>
+    <option>Select Speciality:</option>
+    <option value="1">Neuro</option>
+    <option value="2">Surgon</option>
+    <option value="3">Eye Specialist</option>
+  </Form.Select>
+    </Form.Group> 
     </Col>
-  
-    <Col sm={4}>
-    <Form.Group className="mb-3" controlId="gender">
-   
-      <Form.Control type="text" placeholder="Enter Gender" id="lastName"/>
-    </Form.Group>
-    </Col>
-    <Col sm={4}></Col>
-    
-    </Row>
-    <Row>
-    <Col sm={8}>
-  
-    <Form.Group className="mb-3" controlId="address">
-    
-    <Form.Control as="textarea" rows={1} id="address"  placeholder="Enter Address"/>
-  </Form.Group>
-    </Col>
+
     <Col sm={4}></Col>
     </Row>
     <Row>
-    <Col sm={8}>
-    <Form.Group className="mb-3" controlId="symptoms">
-    
-    <Form.Control as="textarea" rows={1} id="symptoms"  placeholder="Enter Symptoms"/>
-  </Form.Group>
+    <Col sm={2}>
+  <Form.Label>Doctor name:</Form.Label>
     </Col>
+    
+    <Col sm={6}> <Form.Group className="mb-3" controlId="Name">
+    
+    
+    
+    </Form.Group> 
+    
+    </Col>
+
     <Col sm={4}></Col>
     </Row>
     <Row>
-    <Col sm={8}>
-    <Form.Group className="mb-3" controlId="ward">
+    <Col sm={2}>
+  <Form.Label>Days:</Form.Label>
+    </Col>
+    <Col sm={6}> <Form.Group className="mb-3" controlId="ward">
     
     <Form.Select aria-label="Default select example">
-    <option>Select Doctor</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+    <option>Select Available Days:</option>
+    <option value="1">MoN</option>
+    <option value="2">TUE</option>
+    <option value="3">WED</option>
   </Form.Select>
-    </Form.Group>
+    </Form.Group> 
     </Col>
+
+    <Col sm={4}></Col>
+    </Row>
+    <Row>
+    <Col sm={2}>
+  <Form.Label>Date:</Form.Label>
+    </Col>
+    <Col sm={6}>  <Form.Group className="mb-3" controlId="Date">
+   
+    <Form.Control type="Date" placeholder="Enter Date" id="Date"/>
+  </Form.Group>
+    </Col>
+
+    <Col sm={4}></Col>
+
+    </Row>
+    <Row>
+    <Col sm={2}>
+  <Form.Label>Time Slots::</Form.Label>
+    </Col>
+    <Col sm={6}> <Form.Group className="mb-3" controlId="Slot">
+    
+    <Form.Select aria-label="Default select example">
+    <option>Select Available slots:</option>
+    <option value="1">9 to 10</option>
+    <option value="2">10 to 11</option>
+    <option value="3">11 to 12</option>
+  </Form.Select>
+    </Form.Group> 
+    </Col>
+
     <Col sm={4}></Col>
     </Row>
     <Row>

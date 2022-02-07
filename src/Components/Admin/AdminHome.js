@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import CarouselPage from './Carousel'
 import { BrowserRouter as Router, Route, Routes,Link } from "react-router-dom";
-import AddPatient from './AddPatient';
+import AddPatient from '../User/AddPatient';
 
 import Adddoctor from './Adddoctor';
 import BloodCamp from './BloodCamp';
@@ -25,7 +25,6 @@ export default function AdminHome() {
               <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-patients">
                Patient Records
               </Link>
-            
               <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/add-doctor">
                 Add Doctor Details
               </Link>

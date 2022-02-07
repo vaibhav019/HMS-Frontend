@@ -63,7 +63,7 @@ return (
                       <td>{item.Age}</td>
                       <td>{item.Symptoms}</td>
                       <td>{item.Ward}</td>
-                      <td><Button size='small'>Delete</Button></td>
+                      <td><Button size='small' >Delete</Button></td>
                       {/*<td><IconButton onClick={deletedata(item.PatientID)}><DeleteIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
                       {/*<td><IconButton  ><EditIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
                       <td>{item.PatientID}</td>

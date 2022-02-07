@@ -44,16 +44,16 @@ const [data, setdata] = useState([
     "speciality":"surgon"
  }
 ]);
-// const fetchPost = async () => {
-// const response = await fetch(
-//     "https://api.chucknorris.io/jokes/random"
-//   );
-//  const data = await response.json();
-//   setPosts(data);
-// };
+const fetchPost = async () => {
+const response = await fetch(
+    "https://localhost:44314/api/Doctors/ShowDoctor"
+  );
+ const data = await response.json();
+  setdata(data);
+};
 
 useEffect(() => {
-  
+  fetchPost();
 }, []);
 return (
   <div className="App">

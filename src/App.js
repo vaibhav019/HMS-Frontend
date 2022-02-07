@@ -21,6 +21,7 @@ import { ToastContainer} from 'react-toastify';
 
 import ViewPatients from './Components/Admin/ViewPatients';
 import PatientDetailbymail from './Components/User/PatientDetailbymail';
+import AddAmbulance from './Components/Admin/AddAmbulance';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
     */}
     <Register/>
     <Login/>
+    
     <BookApointmentPage/>
     <Adddoctor/>
     <Ambulance/>
@@ -44,6 +46,8 @@ function App() {
   <AddPatient/>
   <ViewPatients/>
   <Ambulance/>
+  <AddAmbulance/>
+ 
     </BrowserRouter>
     </div>
     )

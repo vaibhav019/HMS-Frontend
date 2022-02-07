@@ -21,7 +21,7 @@ export default function Adddoctor() {
   ];
 
   const postdata=(data)=>{
-    axios.post("https://localhost:44314/api/Doctors/",data).then(   //${base_url}\api\Registers
+    axios.post("https://localhost:44314/api/doctors/",data).then(   //${base_url}\api\Registers
       (response)=>{
         //success
         console.log(response);

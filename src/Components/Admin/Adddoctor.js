@@ -21,7 +21,7 @@ export default function Adddoctor() {
   ];
 
   const postdata=(data)=>{
-    axios.post("https://localhost:44314/api/doctors/",data).then(   //${base_url}\api\Registers
+    axios.post("https://localhost:44314/api/doctors",data).then(   //${base_url}\api\Registers
       (response)=>{
         //success
         console.log(response);
@@ -112,13 +112,13 @@ export default function Adddoctor() {
   <Form.Label>Days:</Form.Label>
     </Col>
     <Col sm={6}> <Form.Group className="mb-3" controlId="WorkingDays">
-
+{/*}
     <Form.Control type="text" placeholder=" Enter Available Days" id="Days" name="WorkingDays" onChange={(e)=>{
       setdoctor({...doctor,WorkingDays:e.target.value})
     }}/>
-    
+  */}
 
-    {/*<Select
+    <Select
     isMulti
     placeholder="Select  Avaliability Days"
    // value={selectedOption} 
@@ -175,12 +175,12 @@ export default function Adddoctor() {
     
     <Row>
     <Col sm={2}>
-    <Form.Label>Experiance:</Form.Label>
+    <Form.Label>Experience(In Years):</Form.Label>
     </Col>
     
-    <Col sm={6}><Form.Group className="mb-3" controlId="Experiance">
+    <Col sm={6}><Form.Group className="mb-3" controlId="Experience">
    
-    <Form.Control type="number" placeholder=" Enter Experiance." id="experience" name="Experience" onChange={(e)=>{
+    <Form.Control type="number" placeholder=" Enter Experience." id="experience" name="Experience" onChange={(e)=>{
       setdoctor({...doctor,Experience:e.target.value})
     }}/>
   </Form.Group> </Col>

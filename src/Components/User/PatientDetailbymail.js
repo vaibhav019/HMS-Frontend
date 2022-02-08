@@ -63,7 +63,7 @@ export default function PatientDetailbymail() {
 <hr />
   */}
 {
- 
+ (data.length>0)?
   <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 1000,marginTop:'20',marginLeft:'10' }}>
   <thead>
       <tr>
@@ -88,7 +88,8 @@ export default function PatientDetailbymail() {
         </tr>)}
      
   </tbody>
-</table>
+</table>:
+''
         }      
 </div>
     

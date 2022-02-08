@@ -22,6 +22,8 @@ import { ToastContainer} from 'react-toastify';
 import ViewPatients from './Components/Admin/ViewPatients';
 import PatientDetailbymail from './Components/User/PatientDetailbymail';
 import AddAmbulance from './Components/Admin/AddAmbulance';
+import BloodDonorDetails from './Components/Admin/Bloodcamp/BloodDoonerDetails';
+import BloodRequesterDetails from './Components/Admin/Bloodcamp/BloodRequesterDetails';
 
 
 function App() {
@@ -47,7 +49,9 @@ function App() {
   <ViewPatients/>
   <Ambulance/>
   <AddAmbulance/>
- 
+ <ViewDoctors/>
+ <BloodDonorDetails/>
+ <BloodRequesterDetails/>
     </BrowserRouter>
     </div>
     )

@@ -12,8 +12,8 @@ export default function BookApointmentPage() {
   //   });
   // };
 
-
-const [Name,setName]=useState(["Sachin","Dhoni"]);
+const[Days,setDays]=useState('');
+const [Name,setName]=useState([]);
 const [Speciality,setSpeciality]=useState("Eye Specialist");
 
 const getdoctor=(Speciality)=>{
@@ -24,14 +24,42 @@ const getdoctor=(Speciality)=>{
     console.log(response.data)
  console.log(response.data,"response")
  setName(response.data);
- for(let i;i<response.data.length;i++){
-   Name.push(response.data[i]);
- }
+//  for(let i;i<response.data.length;i++){
+//    Name.push(response.data[i]);
+//  }
+ //setName(Name);
 console.log(Name,"Name");
     // Code for handling the response
   })
   .catch((error) => {
+   setName([])
    console.log(error)
+    // Code for handling the error
+  })
+}
+
+const getdays=(Name)=>{
+  console.log(Name,"+===============''''''''''=======================")
+  axios.get(`https://localhost:44314/api/appointments/getdays?search=${Name}`)
+  .then((response) => {
+    console.log(response)
+    //console.log(response.data)
+ //console.log(response.data,"response")
+ //setName(response.data);
+//  for(let i;i<response.data.length;i++){
+//    Name.push(response.data[i]);
+//  }
+//var result=response.split(',')
+console.log(response.data,"+++++++++++++++++++++++++++++++++++++++++++");
+setDays(response.data);
+console.log(Days,"==================================================");
+
+
+    // Code for handling the response
+  })
+  .catch((error) => {
+   console.log(error)
+   setDays('');
     // Code for handling the error
   })
 }
@@ -141,13 +169,18 @@ console.log(Name,"Name");
     
     <Form.Control as="select"  onChange={(e)=>{
       setappointment({...appointment,doctorName:e.target.value})
+      getdays(e.target.value)
     }}>
     <option>Select Doctor</option>
-    {Name.map((item,index) => (
+    {(Name)?Name.map((item,index) => (
       <option key={index} value={item}>
         {item}
       </option>
-    ))}
+    )):["Dhoni","Virat"].map((item,index)=>{
+      <option key={index} value={item}>
+      {item}
+    </option>
+    })}
     
   </Form.Control>
     
@@ -167,9 +200,15 @@ console.log(Name,"Name");
       setappointment({...appointment,workingDays:e.target.value})
     }}>
     <option>Select Available Days:</option>
-    <option value="1">MoN</option>
-    <option value="2">TUE</option>
-    <option value="3">WED</option>
+    {(Days.length>0)?Days.map((item,index) => (
+      <option key={index} value={item}>
+        {item}
+      </option>
+    )):["Mon","Tue"].map((item,index)=>{
+      <option key={index} value={item}>
+      {item}
+    </option>
+    })}
   </Form.Select>
     </Form.Group> 
     </Col>

@@ -18,16 +18,16 @@ const deletedata=(PateintID)=>{
     (response)=>{
       console.log(response);
       window.alert("data deleted");
-      updatedata(PateintID);
+      setdata(data.filter((c)=> PateintID !=c.PateintID));
     },(error)=>{
       console.log("Something went wrong",error);
       //window.alert("Something went wrong");
     }
   )
 }
-const updatedata=(id)=>{
-  setdata(data.filter((c)=> c.PateintID !=id));
-};
+// const updatedata=(id)=>{
+//   setdata(data.filter((c)=> c.PateintID !=id));
+// };
 const fetchPost = async () => {
 const response = await fetch(
     "https://localhost:44314/api/Patients"       //https://api.chucknorris.io/jokes/random
@@ -47,14 +47,14 @@ return (
   <Container>
   <h4>All Patients</h4>
   </Container>
-  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 1000,marginTop:'20',marginLeft:'10' }}>
+  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 900,marginTop:'20',marginLeft:'10' }}>
                 <thead>
                     <tr>
                         {heading.map(head => <th>{head}</th>)}
                     </tr>
                 </thead>
                 <tbody >
-                    {data.map(item =>  <tr key={item.PatientID}>
+                    {data.map(item =>  <tr key={item.PateintID}>
                       <td>{item.FirstName+' '+item.LastName}</td>
                       <td>{item.Email}</td>
                       <td>{item.Address}</td>
@@ -63,7 +63,7 @@ return (
                       <td>{item.Age}</td>
                       <td>{item.Symptoms}</td>
                       <td>{item.Ward}</td>
-                      <td><Button size='small' >Delete</Button></td>
+                      <td><Button size='small' onClick={()=>deletedata(item.PateintID)}>Delete</Button></td>
                       {/*<td><IconButton onClick={deletedata(item.PatientID)}><DeleteIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
                       {/*<td><IconButton  ><EditIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
                       <td>{item.PatientID}</td>

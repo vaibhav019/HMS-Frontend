@@ -14,8 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import base_url from '../api/api'
-import { ToastContainer, toast } from 'react-toastify';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+//import { ToastContainer, toast } from 'react-toastify';
+//import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import {Redirect} from 'react-router-dom'
 const theme = createTheme();
 
 export default function Register() {
@@ -69,12 +70,17 @@ const getdata=()=>{
     }
   )
 }
+
 const postdata=(data)=>{
   axios.post("https://localhost:44314/api/user/insertuser",data).then(   //${base_url}\api\Registers
     (response)=>{
       //success
       console.log(response);
-      toast.success("Registration done Successfully");
+      //toast.success("Registration done Successfully");
+      window.alert("Registration done Successfully")
+    
+      window.location = "/login";
+    
       console.log("successs");
     },(error)=>{
       //error
@@ -89,6 +95,7 @@ const postdata=(data)=>{
     console.log(register,"+++++++++++++++++++");
     postdata(register);
     e.preventDefault();
+    
     //const data = new FormData(e.currentTarget);
     // eslint-disable-next-line no-console
     // console.log({

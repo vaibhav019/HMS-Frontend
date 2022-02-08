@@ -1,11 +1,12 @@
 import React , { useState, useEffect } from 'react'
 import { Table,Button, Container } from 'react-bootstrap';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { pink } from '@mui/material/colors';
-import EditIcon from '@mui/icons-material/Edit';
-import { IconButton } from '@mui/material';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import { pink } from '@mui/material/colors';
+// import EditIcon from '@mui/icons-material/Edit';
+// import { IconButton } from '@mui/material';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+import {Link} from 'react-router-dom'
 export default function BloodRequesterDetails() {
     const [data, setdata] = useState([])
     console.log(data, "stored")
@@ -34,9 +35,10 @@ export default function BloodRequesterDetails() {
             console.log(response);
             window.alert("data deleted");
            //updatedata(RequestID);
+           setdata(data.filter((c)=> RequestID !=c.RequestID));
           },(error)=>{
             console.log("Something went wrong",error);
-            //window.alert("Something went wrong");
+            window.alert("Something went wrong");
           }
         );
       }
@@ -65,7 +67,7 @@ export default function BloodRequesterDetails() {
             </thead>
  
             <tbody>
-              {data.map(item => <tr key={item.RequestID}>
+              {data && data.map(item => <tr key={item.RequestID}>
                 <td>{item.RequestID}</td>
                 <td>{item.RequestorName}</td>
                 <td>{item.RequestorAge}</td>
@@ -76,12 +78,14 @@ export default function BloodRequesterDetails() {
                 <td>{item.RequestedBloodtype}</td>
                 <td>{item.RequestedOn}</td>
                 <td>{(item.IsActive)?'yes':'No'}</td>
-                <td><Button onClick={deletedata(item.RequestID)} >Reject</Button></td>
+                <td><Button onClick={()=>deletedata(item.RequestID)} >Reject</Button></td>
               </tr>)}
             </tbody>
           </Table>
         </Container>
+       <Button variant="warning"> <Link to="/bloodcamp" tag="a" action className="text-light">Back</Link></Button>
       </div>
+      
  
     )
 }

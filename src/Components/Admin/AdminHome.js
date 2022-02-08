@@ -1,14 +1,20 @@
 import React from 'react'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import CarouselPage from './Carousel'
-import { BrowserRouter as Router, Route, Routes,Link } from "react-router-dom";
-import AddPatient from '../User/AddPatient';
-
+import { BrowserRouter as Router, Route, Switch,Link } from "react-router-dom";
+//import AddPatient from '../User/AddPatient';
+import ViewDoctors from '../User/ViewDoctors'
 import Adddoctor from './Adddoctor';
 import BloodCamp from './BloodCamp';
 import GetFeedback from './GetFeedback';
 import ViewPatients from './ViewPatients';
-
+import AddAmbulance from './AddAmbulance'
+import Ambulance1 from '../User/Ambulance'
+import BloodDashboard from './Bloodcamp/BloodDashboard';
+import BloodDonorDetails from './Bloodcamp/BloodDoonerDetails';
+import BloodRequesterDetails from './Bloodcamp/BloodDoonerDetails';
+import GetApointmentPage from '../User/GetApointmentPage';
+import VaccinationDetails from './VaccinationDetails';
 export default function AdminHome() {
   return (
     <div >
@@ -19,24 +25,36 @@ export default function AdminHome() {
 
             <ListGroup >
             
-              <Link className="list-group-item list-group-item-action bg-muted" variant="primary" action tag="a" to="/add-patient">
+              {/*<Link className="list-group-item list-group-item-action bg-muted" variant="primary" action tag="a" to="/add-patient">
                 Add Patient Records
-              </Link>
+  </Link>*/}
               <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-patients">
                Patient Records
               </Link>
               <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/add-doctor">
                 Add Doctor Details
               </Link>
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/add-doctor">
+              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-doctor">
                Doctor Details
             </Link>
               <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/bloodcamp">
                 Blood Camp
               </Link>
+              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/add-ambulance">
+                Add Ambulance
+              </Link>
+              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-ambulance">
+                View Ambulance
+              </Link>
               <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-feedback">
                 feedback recieved
               </Link>
+              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-appointment">
+             All Appoitments
+            </Link>
+            <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-vaccination">
+             All Vacccination Booking Details
+            </Link>
 
               <Link className="list-group-item list-group-item-action bg-muted" variant="dark"  to="">
                 <div><br /><br /><br /><br /><br /></div>
@@ -46,15 +64,23 @@ export default function AdminHome() {
           </Col>
           <Col sm={9}>
           
-            <Routes>
-              <Route exact path="/" component={CarouselPage} />
-              <Route exact path="/add-patient" component={AddPatient} />
+            <Switch>
+              <Route exact path="/admin" component={CarouselPage} />
+  {/*} <Route exact path="/add-patient" component={AddPatient} */}
               <Route exact path="/get-patients" component={ViewPatients}/>
              
               <Route exact path="/add-doctor" component={Adddoctor} />
-              <Route exact path="/bloodcamp" component={BloodCamp} />
+              <Route exact path="/bloodcamp" component={BloodDashboard} />
               <Route exact path="/get-feedback" component={GetFeedback} />
-            </Routes>
+              
+              <Route exact path="/get-doctor" component={ViewDoctors} />
+              <Route exact path="/add-ambulance" component={AddAmbulance} />
+              <Route exact path="/get-ambulance" component={Ambulance1} />
+              <Route exact path="/blood-request-data" component={BloodRequesterDetails} />
+              <Route exact path="/blood-donor-data" component={BloodDonorDetails} />
+              <Route exact path="/get-appointment" component={GetApointmentPage} />
+              <Route exact path="/get-vaccination" component={VaccinationDetails} />
+            </Switch>
 
 
 

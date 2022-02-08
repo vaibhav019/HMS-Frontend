@@ -1,6 +1,6 @@
 import React , { useState, useEffect } from 'react'
-import { Container } from 'react-bootstrap';
-
+import { Button, Container } from 'react-bootstrap';
+import axios from 'axios';
 export default function ViewDoctors() {
   var heading = ['Name', 'email','phone','specialty','Working Days','Experience','action'];
 
@@ -55,12 +55,26 @@ const response = await fetch(
 useEffect(() => {
   fetchPost();
 }, []);
+
+const deletedata=(RequestID)=>{
+  axios.delete(`https://localhost:44314/api/doctors/${RequestID}`).then(
+    (response)=>{
+      console.log(response);
+      window.alert("one doctor data deleted");
+     setdata(data.filter((c)=> RequestID !=c.DoctorID));
+    },(error)=>{
+      console.log("Something went wrong",error);
+      window.alert("Something went wrong");
+    }
+  );
+}
+
 return (
   <div className="App">
   <Container>
   <h4>All Doctors</h4>
   </Container>
-  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10}>
+  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} width='850'>
                 <thead>
                     <tr>
                         {heading.map(head => <th>{head}</th>)}
@@ -74,7 +88,7 @@ return (
                       <td>{item.Speciality}</td>
                       <td>{item.WorkingDays}</td>
                       <td>{item.Experience}</td>
-                      <td>edit|delete</td>
+                      <td><Button onClick={()=>deletedata(item.DoctorID)} >Delete</Button></td>
                   </tr>)}
                 </tbody>
             </table>

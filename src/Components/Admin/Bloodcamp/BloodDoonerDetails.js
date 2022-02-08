@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 export default function BloodDonorDetails() {
     const [data, setdata] = useState([])
     console.log(data, "stored")
@@ -65,7 +66,9 @@ export default function BloodDonorDetails() {
           </Table>
  
         </Container>
+        <Button variant="warning"> <Link to="/bloodcamp" tag="a" action >Back</Link></Button>
       </div>
+      
  
     )
   }

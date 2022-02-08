@@ -32,7 +32,9 @@ export default function Login() {
       (response)=>{
         //success
         console.log(response);
-        toast.success("Login done Successfully");
+        //toast.success("Login done Successfully");
+        window.alert("Login Done Successsfully")
+        window.location = "/userhome";
         console.log("successs");
       },(error)=>{
         //error
@@ -128,7 +130,7 @@ export default function Login() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/register" action  tag="a" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

@@ -19,7 +19,7 @@
     "react-bootstrap-sidebar": "^0.0.1",
     "react-dom": "^17.0.2",
     "react-material-ui-form-validator": "^3.0.0",
-    "react-router-dom": "^6.2.1",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.0",
     "react-select": "^5.2.2",
     "react-toastify": "^8.1.1",

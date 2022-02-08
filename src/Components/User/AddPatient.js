@@ -36,6 +36,8 @@ export default function AddPatient() {
       console.log(patient,"+++++++++++++++++++");
       postdata(patient);
       e.preventDefault();
+      setpatient({})
+      
       //const data = new FormData(e.currentTarget);
       // eslint-disable-next-line no-console
       // console.log({

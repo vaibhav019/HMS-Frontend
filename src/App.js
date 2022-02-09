@@ -5,7 +5,7 @@ import './App.css';
 import AdminHome from './Components/Admin/AdminHome';
 //import Footer from './Components/Footer';
 import Header from './Components/Header';
-
+import MainPage from './Components/MainPage'
  import Login from './Components/Login';
  import Register from './Components/Register';
 // import Ambulance from './Components/User/Ambulance';
@@ -39,7 +39,7 @@ function App() {
     <Route exact path="/login" component={Login}/>
     <Route exact path="/userhome" component={UserHome}/>
    <Route exact route="/adminhome" component={AdminHome}/>
-
+   <Route exact route="/main" component={MainPage}/>
     </Switch>
     
     </BrowserRouter>

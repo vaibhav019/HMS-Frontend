@@ -61,7 +61,7 @@ const deletedata=(RequestID)=>{
     (response)=>{
       console.log(response);
       window.alert("one doctor data deleted");
-     setdata(data.filter((c)=> RequestID !=c.DoctorID));
+     setdata(data.filter((c)=> RequestID !==c.DoctorID));
     },(error)=>{
       console.log("Something went wrong",error);
       window.alert("Something went wrong");

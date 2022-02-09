@@ -16,7 +16,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 const theme = createTheme();
 
-export default function Login() {
+export default function Login(props) {
   // const handleSubmit = (event) => {
   //   event.preventDefault();
   //   const data = new FormData(event.currentTarget);
@@ -46,8 +46,16 @@ export default function Login() {
     const [login,setlogin]=useState({});
     const handleSubmit = (e) => {
       console.log(login,"+++++++++++++++++++");
-      postdata(login);
-      e.preventDefault();
+      if(login.Email=="vaibhavsengarnetid@gmail.com" && login.Password=="12345"){
+        console.log(login.Email)
+        console.log(login.Password)
+        window.alert("Login done as admin")
+      //window.location = "/adminhome"
+      props.history.push("/adminhome");
+      }else{
+       postdata(login);
+       e.preventDefault();
+      }
       //const data = new FormData(e.currentTarget);
       // eslint-disable-next-line no-console
       // console.log({
@@ -86,6 +94,7 @@ export default function Login() {
               autoFocus
               onChange={(e)=>{
                 setlogin({...login,Email:e.target.value})
+                
               }}
             />
             <TextField

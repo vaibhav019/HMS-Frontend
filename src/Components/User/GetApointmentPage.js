@@ -59,7 +59,7 @@ export default function GetApointmentPage() {
      
     <div className="App">
     <Container>
-    <h4>All Doctors</h4>
+    <h4>All Appoitnment</h4>
     </Container>
     <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 1000,marginTop:'20',marginLeft:'10' }}>
                   <thead>

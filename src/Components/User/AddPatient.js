@@ -24,6 +24,7 @@ export default function AddPatient() {
         //toast.success("Patient Record added Successfully");
         alert("patient data added");
         console.log("Patient Record added Successfully");
+        window.location = "/userhome";
       },(error)=>{
         //error
         console.log(error);

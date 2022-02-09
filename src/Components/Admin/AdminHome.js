@@ -9,7 +9,7 @@ import BloodCamp from './BloodCamp';
 import GetFeedback from './GetFeedback';
 import ViewPatients from './ViewPatients';
 import AddAmbulance from './AddAmbulance'
-import Ambulance1 from '../User/Ambulance'
+import Ambulance from '../User/Ambulance'
 import BloodDashboard from './Bloodcamp/BloodDashboard';
 import BloodDonorDetails from './Bloodcamp/BloodDoonerDetails';
 import BloodRequesterDetails from './Bloodcamp/BloodDoonerDetails';
@@ -65,7 +65,7 @@ export default function AdminHome() {
           <Col sm={9}>
           
             <Switch>
-              <Route exact path="/admin" component={CarouselPage} />
+              <Route exact path="/" component={CarouselPage} />
   {/*} <Route exact path="/add-patient" component={AddPatient} */}
               <Route exact path="/get-patients" component={ViewPatients}/>
              
@@ -75,7 +75,7 @@ export default function AdminHome() {
               
               <Route exact path="/get-doctor" component={ViewDoctors} />
               <Route exact path="/add-ambulance" component={AddAmbulance} />
-              <Route exact path="/get-ambulance" component={Ambulance1} />
+              <Route exact path="/get-ambulance" component={Ambulance} />
               <Route exact path="/blood-request-data" component={BloodRequesterDetails} />
               <Route exact path="/blood-donor-data" component={BloodDonorDetails} />
               <Route exact path="/get-appointment" component={GetApointmentPage} />

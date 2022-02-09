@@ -89,11 +89,16 @@ const postdata=(data)=>{
     }
   );
 };
+const[emailerror,setemailerror]=useState('')
   const [register,setregister]=useState({});
   const handleSubmit = (e) => {
     // if (validate()){
     console.log(register,"+++++++++++++++++++");
+    if(register.PhoneNumber.length==10){
     postdata(register);
+    }else{
+      window.alert("Please Enter 10 digit Phone Number ")
+    }
     e.preventDefault();
     
     //const data = new FormData(e.currentTarget);
@@ -146,6 +151,7 @@ const postdata=(data)=>{
                   required
                   fullWidth
                   id="LastName"
+                 
                   label="Last Name"
                   name="LastName"
                   autoComplete="family-name"
@@ -156,8 +162,6 @@ const postdata=(data)=>{
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
-                  
                   fullWidth
                   id="Email"
                   label="Email Address"
@@ -165,13 +169,21 @@ const postdata=(data)=>{
                   autoComplete="Email"
                   onChange={(e)=>{
                     setregister({...register,Email:e.target.value})
+                    let reg=new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(e.target.value) 
+                if(!reg){
+                  setemailerror("Please Enter Valid Email")
+                }
                   }}
+                  required
+              error={Boolean(emailerror)}
+              helperText={emailerror}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
+                  inputProps={{maxLength:8}}
                   name="Password"
                   label="Password"
                   type="password"
@@ -188,11 +200,19 @@ const postdata=(data)=>{
                 fullWidth
                 id="PhoneNumber"
                 label="Phone No."
+                type="number"
                 name="PhoneNumber"
                 autoComplete="Phone no"
+                inputProps={{maxLength:10}}
                 onChange={(e)=>{
                   setregister({...register,PhoneNumber:e.target.value})
+                  //let reg=new RegExp(/^\d*$/).test(e.target.value) 
+                  // if(e.target.value.length!=10){
+                  //   setemailerror("Please Enter 10 digit PhoneNo.")
+                  // }
                 }}
+                error={Boolean(emailerror)}
+              helperText={emailerror}
               />
             </Grid>
               {/*<Grid item xs={12}>

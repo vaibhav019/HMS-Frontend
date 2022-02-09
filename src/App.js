@@ -25,23 +25,25 @@ import MainPage from './Components/MainPage'
 // import AddAmbulance from './Components/Admin/AddAmbulance';
 // import BloodDonorDetails from './Components/Admin/Bloodcamp/BloodDoonerDetails';
 // import BloodRequesterDetails from './Components/Admin/Bloodcamp/BloodRequesterDetails';
-
+//import {role} from './Components/Login'
 
 function App() {
+  console.log(localStorage.getItem('role'),"====================================")
+ 
   return(
     <div>
    
     <BrowserRouter>
-    <Header role="user"/>
+
+    <Header role={localStorage.getItem('role')}/>
 
     <Switch>
     <Route exact path="/register" component={Register}/>
     <Route exact path="/login" component={Login}/>
     <Route exact path="/userhome" component={UserHome}/>
    <Route exact route="/adminhome" component={AdminHome}/>
-   <Route exact route="/main" component={MainPage}/>
+   {/*<Route exact route="/main" component={MainPage}/>*/}
     </Switch>
-    
     </BrowserRouter>
     </div>
   )

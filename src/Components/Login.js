@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 const theme = createTheme();
-
+export var role='';
 export default function Login(props) {
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -31,18 +31,25 @@ export default function Login(props) {
     axios.post("https://localhost:44314/api/user/login",data).then(   //${base_url}\api\Registers
       (response)=>{
         //success
-        console.log(response);
+        console.log(response,"============");
         //toast.success("Login done Successfully");
-        window.alert("Login Done Successsfully")
+        if(response.data.isSuccess){
+        window.alert(response.data.message)
         window.location = "/userhome";
         console.log("successs");
+        }else{
+          window.alert(response.data.message)
+        }
+        
       },(error)=>{
         //error
+        window.alert(error)
         console.log(error);
         console.log("failed +++++++++++++++++++")
       }
     );
   };
+  const[emailerror,setemailerror]=useState('')
     const [login,setlogin]=useState({});
     const handleSubmit = (e) => {
       console.log(login,"+++++++++++++++++++");
@@ -50,8 +57,12 @@ export default function Login(props) {
         console.log(login.Email)
         console.log(login.Password)
         window.alert("Login done as admin")
-      //window.location = "/adminhome"
-      props.history.push("/adminhome");
+       localStorage.setItem('role','admin')
+       window.alert("Login done as ",localStorage.getItem('role'))
+
+      window.location = "/adminhome"
+      e.preventDefault();
+      //props.history.push("/adminhome");
       }else{
        postdata(login);
        e.preventDefault();
@@ -85,22 +96,30 @@ export default function Login(props) {
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
-              required
+              
               fullWidth
               id="Email"
               label="Email Address"
               name="Email"
-              autoComplete="email"
+              autoComplete="off"
+              inputProps={{maxLength:100}}
               autoFocus
               onChange={(e)=>{
                 setlogin({...login,Email:e.target.value})
-                
+                let reg=new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(e.target.value) 
+                if(!reg){
+                  setemailerror("Please Enter Valid Email")
+                }
               }}
+              required
+              error={Boolean(emailerror)}
+              helperText={emailerror}
             />
             <TextField
               margin="normal"
               required
               fullWidth
+              inputProps={{maxLength:8}}
               name="Password"
               label="Password"
               type="password"

@@ -9,11 +9,12 @@ export default function PatientDetailbymail() {
   const fetchPost = async (search) => {
     const response = await fetch(
         `https://localhost:44314/api/Patients/getpateintbymail?search=${search}`       
-      );                                                  ////https://api.chucknorris.io/jokes/random
+      );                                              ////https://api.chucknorris.io/jokes/random
      const data = await response.json();
       setdata(data);
-      //toast.success("data loaded successfully");
-      console.log(data)
+      //toast.success("data loaded successfully"); 
+      console.log(data);       
+      window.alert(data.message);
     };
     const [search,setsearch]=useState("");
   

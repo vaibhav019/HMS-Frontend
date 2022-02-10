@@ -5,16 +5,18 @@ import { BrowserRouter as Router, Route, Switch,Link } from "react-router-dom";
 //import AddPatient from '../User/AddPatient';
 import ViewDoctors from '../User/ViewDoctors'
 import Adddoctor from './Adddoctor';
+import UpdateDoctor from './UpdateDoctor';
 import BloodCamp from './BloodCamp';
 import GetFeedback from './GetFeedback';
 import ViewPatients from './ViewPatients';
 import AddAmbulance from './AddAmbulance'
-import Ambulance from '../User/Ambulance'
+import Ambulance1 from '../User/Ambulance1'
 import BloodDashboard from './Bloodcamp/BloodDashboard';
 import BloodDonorDetails from './Bloodcamp/BloodDoonerDetails';
 import BloodRequesterDetails from './Bloodcamp/BloodDoonerDetails';
 import GetApointmentPage from '../User/GetApointmentPage';
 import VaccinationDetails from './VaccinationDetails';
+
 export default function AdminHome() {
   return (
     <div >
@@ -75,11 +77,12 @@ export default function AdminHome() {
               
               <Route exact path="/get-doctor" component={ViewDoctors} />
               <Route exact path="/add-ambulance" component={AddAmbulance} />
-              <Route exact path="/get-ambulance" component={Ambulance} />
+              <Route exact path="/get-ambulance" component={Ambulance1} />
               <Route exact path="/blood-request-data" component={BloodRequesterDetails} />
               <Route exact path="/blood-donor-data" component={BloodDonorDetails} />
               <Route exact path="/get-appointment" component={GetApointmentPage} />
               <Route exact path="/get-vaccination" component={VaccinationDetails} />
+              <Route exact path="/update-doctor/:DoctorID" component={UpdateDoctor} />
             </Switch>
 
 

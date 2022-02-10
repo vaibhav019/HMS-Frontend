@@ -89,6 +89,7 @@ return (
                       <td>{item.WorkingDays}</td>
                       <td>{item.Experience}</td>
                       <td><Button onClick={()=>deletedata(item.DoctorID)} >Delete</Button></td>
+                      <td><Button onClick={()=> window.location = `/update-doctor/${item.DoctorID}`} >Update</Button></td>
                   </tr>)}
                 </tbody>
             </table>

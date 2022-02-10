@@ -11,7 +11,7 @@ import Feedback from './Feedback';
 import GetApointmentPage from './GetApointmentPage';
 import AddPatient from '../User/AddPatient';
 import Payment from './Payment';
-import Ambulance1 from './Ambulance1'
+import Ambulance from './Ambulance'
 import PatientDetailbymail from './PatientDetailbymail'
 //import Register from '../Register';
 import VaccinationDetails from '../Admin/VaccinationDetails';
@@ -75,7 +75,7 @@ export default function UserHome() {
                             <Route path="/book-vaccination" component={BookVaccination} />
                             <Route path="/add-feedback" component={Feedback}  />
                             <Route path="/blood-donation" component={BloodDonationPage} />
-                            <Route path="/ambulance-user" component={Ambulance1}  />
+                            <Route path="/ambulance-user" component={Ambulance}  />
                             <Route path="/payment" component={Payment} />
                             <Route path="/getpatientbymail" component={PatientDetailbymail} />
                             <Route path="/add-feedback" component={Feedback} />

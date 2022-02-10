@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Container,Button } from 'react-bootstrap';
 import axios from 'axios';
-export default function Ambulance() {
+export default function Ambulance1() {
   const [data, setdata] = useState([])
   const fetchPost = async () => {
     const response = await fetch(
@@ -13,7 +13,7 @@ export default function Ambulance() {
     console.log(data)
 
 
-  };
+  };  
   useEffect(() => {
     fetchPost();
   }, []);
@@ -35,18 +35,19 @@ export default function Ambulance() {
 
       <Container fluid='sm' color='secondary' style={{ width: '800px' }} >
         <h5>Ambulance Details</h5>
-        <Table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10}>
+        <Table bordered size="sm"  variant="secondary" cellPadding={10} cellSpacing={10} >
           <thead>
 
-            <tr>
+            <tr classname="text-center">
               <th>Ambulance No.</th>
               <th>Owner Name</th>
               <th> Call For Details</th>
+              <th> Action</th>
             </tr>
           </thead>
 
           <tbody>
-            {data.map(item => <tr key={item.AmbulanceNo}>
+            {data.map(item => <tr   key={item.AmbulanceNo}>
               <td>{item.AmbulanceNo}</td>
               <td>{item.OwnerName}</td>
               <td>{item.CallForDetails}</td>

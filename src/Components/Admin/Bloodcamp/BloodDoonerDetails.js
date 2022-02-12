@@ -27,10 +27,25 @@ export default function BloodDonorDetails() {
     useEffect(() => {
       fetchPost();
     }, []);
+
+    const deletedata=(RequestID)=>{
+      console.log(RequestID,"ggggggggggfff+++++++++++++++++++++++")
+      axios.delete(`https://localhost:44314/api/BloodRequest/${RequestID}`).then(
+        (response)=>{
+          console.log(response);
+          window.alert("data deleted");
+         //updatedata(RequestID);
+         setdata(data.filter((c)=> RequestID !=c.RequestID));
+        },(error)=>{
+          console.log("Something went wrong",error);
+          window.alert("Something went wrong");
+        }
+      );
+    }
     return (
       <div  >
  
-        <Container fluid='sm' color='secondary' style={{ width: '800px' }} >
+       {/*} <Container fluid='sm' color='secondary' style={{ width: '800px',ml:0 }} >*/}
           <h5>Blood Donor Details</h5>
           <Table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10}>
             <thead>
@@ -46,6 +61,7 @@ export default function BloodDonorDetails() {
                 <th>Email</th>
                 <th>Weight</th>
                 <th>IsHealthy</th>
+                <th>Action</th>
               </tr>
             </thead>
  
@@ -61,11 +77,13 @@ export default function BloodDonorDetails() {
                 <td>{item.Email}</td>
                 <td>{item.DonorWeight}</td>
                 <td>{(item.Ishealthy)?'yes':'No'}</td>
+                <td><Button onClick={()=>deletedata(item.DonorID)} >Reject</Button></td>
+                <td></td>
               </tr>)}
             </tbody>
           </Table>
  
-        </Container>
+        {/*</Container>*/}
         <Button variant="warning"> <Link to="/bloodcamp" tag="a" action >Back</Link></Button>
       </div>
       

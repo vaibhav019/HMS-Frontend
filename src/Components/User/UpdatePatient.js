@@ -2,10 +2,10 @@ import React ,{useState,useEffect,Fragment}  from 'react'
 import { Container, Form,Row,Col,Button } from 'react-bootstrap';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { useParams } from "react-router-dom";
 
 
-
-export default function AddPatient() {
+export default function UpdatePatient() {
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -16,6 +16,7 @@ export default function AddPatient() {
   //     password: data.get('password'),
   //   });
   // };
+  const params = useParams(); 
   const postdata=(data)=>{
     axios.post("https://localhost:44314/api/Patients",data).then(   //${base_url}\api\Registers
       (response)=>{
@@ -32,10 +33,26 @@ export default function AddPatient() {
       }
     );
   };
+  const updatedata=(data)=>{
+    console.log("inside Updatedata method",params)
+    console.log("params is working",params.PatientID)
+     console.log(params.PatientID)
+    axios.put(`https://localhost:44314/api/Patients/${params.PatientID}`, data)
+    .then(response => {
+      console.log("Status: ", response.status);
+      console.log("Data: ", response.data);
+      window.alert("patient data updated")
+      window.location = "/getpatientbymail"
+    }).catch(error => {
+      console.error('Something went wrong!', error);
+      window.alert("Something Wrong: Doctor data not updated Please enter valid details")
+    });
+ }
     const [patient,setpatient]=useState({});
     const handleSubmit = (e) => {
       console.log(patient,"+++++++++++++++++++");
-      postdata(patient);
+      //postdata(patient);
+      updatedata(patient)
       e.preventDefault();
       setpatient({})
       

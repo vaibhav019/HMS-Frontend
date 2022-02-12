@@ -1,8 +1,8 @@
 import React  , { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap';
-
+import axios from 'axios';
 export default function GetApointmentPage() {
-  var heading = ['Name', 'email', 'address','phone','specialty','action'];
+  var heading = ['Name', 'email','Specialty','DoctorName','Day','date','time'];
 
   const [data, setdata] = useState([
     {
@@ -44,16 +44,33 @@ export default function GetApointmentPage() {
       "speciality":"surgon"
    }
   ]);
-  // const fetchPost = async () => {
-  // const response = await fetch(
-  //     "https://api.chucknorris.io/jokes/random"
-  //   );
-  //  const data = await response.json();
-  //   setPosts(data);
-  // };
+  const deletedata=(appointmentID)=>{
+   axios.delete(`https://localhost:44314/api/appointments/${appointmentID}`).then(
+     (response)=>{
+       console.log(response);
+       window.alert("one doctor data deleted");
+      setdata(data.filter((c)=> appointmentID !==c.appointmentID));
+     },(error)=>{
+       console.log("Something went wrong",error);
+       window.alert("Something went wrong");
+     }
+   );
+ }
+ 
+
+  const fetchPost = async () => {
+   const response = await fetch(
+       "https://localhost:44314/api/appointments/getdata"
+     );
+    const data = await response.json();
+    console.log(data,"data aa rha hai")
+     setdata(data);
+   };
+   
   
   useEffect(() => {
-    
+     console.log(data,"outside fetch data update ho rha hai")
+    fetchPost()
   }, []);
   return (
      
@@ -61,20 +78,23 @@ export default function GetApointmentPage() {
     <Container>
     <h4>All Appoitnment</h4>
     </Container>
-    <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 1000,marginTop:'20',marginLeft:'10' }}>
+    <table bordered size="sm" variant="secondary" cellPadding={7} cellSpacing={7} style={{ width: 920,marginTop:'20',marginLeft:'10' }}>
                   <thead>
                       <tr>
-                          {heading.map(head => <th>{head}</th>)}
+                          {heading && heading.map(head => <th>{head}</th>)}
                       </tr>
                   </thead>
                   <tbody>
-                      {data.map(item =>  <tr>
-                        <td>{item.name}</td>
+                      { data && data.map(item =>  <tr key={item.appointment_ID}>
+                        <td>{item.patientName}</td>
                         <td>{item.email}</td>
-                        <td>{item.address.city}</td>
-                        <td>{item.phone}</td>
-                        <td>{item.speciality}</td>
-                        <td>edit|delete</td>
+                        <td>{item.Speciality}</td>
+                        <td>{item.doctorName}</td>
+                        <td>{item.day}</td>
+                        <td>{item.date}</td>
+                        <td>{item.time}</td> 
+                        <td><button >Accept</button></td>
+                        <td><button>Reject</button></td>
                     </tr>)}
                   </tbody>
               </table>

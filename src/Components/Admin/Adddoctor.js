@@ -27,6 +27,8 @@ export default function Adddoctor() {
         console.log(response);
         console.log("success")
         //toast.success("Patient Record added Successfully");
+        alert("Doctor data added successsfully")
+        window.location="/adminhome"
         console.log("doctor Record added Successfully");
       },(error)=>{
         //error
@@ -112,12 +114,12 @@ export default function Adddoctor() {
   <Form.Label>Days:</Form.Label>
     </Col>
     <Col sm={6}> <Form.Group className="mb-3" controlId="WorkingDays">
-{/*}
+
     <Form.Control type="text" placeholder=" Enter Available Days" id="Days" name="WorkingDays" onChange={(e)=>{
       setdoctor({...doctor,WorkingDays:e.target.value})
     }}/>
-  */}
-
+  
+{/*
     <Select
     isMulti
     placeholder="Select  Avaliability Days"
@@ -126,7 +128,7 @@ export default function Adddoctor() {
     onChange={(e)=>{
       setdoctor({...doctor,WorkingDays:e})
     }} // assign onChange function
-  />
+  />*/}
     {/*<Form.Select  aria-label="Default select example" name="WorkingDays"  onChange={(e)=>{
     //   const WorkingDays=[];
     // let selectedOption=(e.target.selectedOptions);
@@ -163,9 +165,16 @@ export default function Adddoctor() {
       setdoctor({...doctor,Speciality:e.target.value})
     }}>
     <option>Select Speciality:</option>
-    <option value="Neuro">Neuro</option>
-    <option value="Siurgon">Surgon</option>
-    <option value="Fever">Fever</option>
+    <option value="Dentist">Dentist</option>
+    <option value="Gynacologist">Gynacologist</option>
+    <option value="General Physician">General Physician</option>
+    <option value="NeuroSurgeon">NeuroSurgeon</option>
+    <option value="Surgeon">Surgeon</option>
+    <option value="Eye Specialist">Eye Specialist</option>
+    <option value="Orthopedics">Orthopedics</option>
+    <option value="PlasticSurgeon">PlasticSurgeon</option>
+    <option value="Radiologist">Radiologist</option>
+    <option value="Cardiologist">Cardiologist</option>
   </Form.Select>
     </Form.Group> 
     </Col>

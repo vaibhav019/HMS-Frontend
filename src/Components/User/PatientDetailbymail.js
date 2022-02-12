@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {Container,Form,FormControl,Button,} from 'react-bootstrap';
+import axios from 'axios'
 export default function PatientDetailbymail() {
  const [data, setdata] = useState([
 
@@ -26,7 +27,18 @@ export default function PatientDetailbymail() {
       e.preventDefault();
       
     };
-
+    const deletedata=(PatientID)=>{
+      axios.delete(`https://localhost:44314/api/Patients/${PatientID}`).then(
+        (response)=>{
+          console.log(response);
+          window.alert("one doctor data deleted");
+         setdata(data.filter((c)=> PatientID !==c.PateintID));
+        },(error)=>{
+          console.log("Something went wrong",error);
+          window.alert("Something went wrong");
+        }
+      );
+    }
 
   return (
     <div>
@@ -35,7 +47,7 @@ export default function PatientDetailbymail() {
     <Form className="d-flex" onSubmit={handleSubmit}>
     <FormControl
       type="search"
-      placeholder="Search"
+      placeholder="Enter Email"
       className="me-2 "
       aria-label="Search"
       size="sm"
@@ -65,7 +77,7 @@ export default function PatientDetailbymail() {
   */}
 {
  (data.length>0)?
-  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 1000,marginTop:'20',marginLeft:'10' }}>
+  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 900,marginTop:'20',marginLeft:'10' }}>
   <thead>
       <tr>
           {heading.map(head => <th>{head}</th>)}
@@ -73,7 +85,7 @@ export default function PatientDetailbymail() {
   </thead>
   <tbody >
       {
-        data.map(item =>  <tr key={item.PatientID}>
+        data.map(item =>  <tr key={item.PateintID}>
         <td>{item.FirstName+' '+item.LastName}</td>
         <td>{item.Email}</td>
         <td>{item.Address}</td>
@@ -82,10 +94,9 @@ export default function PatientDetailbymail() {
         <td>{item.Age}</td>
         <td>{item.Symptoms}</td>
         <td>{item.Ward}</td>
-        <td><Button size='small' >Update</Button></td>
-        {/*<td><IconButton onClick={deletedata(item.PatientID)}><DeleteIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
-        {/*<td><IconButton  ><EditIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
-        <td>{item.PatientID}</td>
+        <td><Button size='small'>Update</Button></td>
+        <td><Button onClick={()=>deletedata(item.PateintID)} >Delete</Button></td>
+      
         </tr>)}
      
   </tbody>

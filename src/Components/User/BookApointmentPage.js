@@ -12,15 +12,15 @@ export default function BookApointmentPage() {
   //   });
   // };
 
-const[Days,setDays]=useState('');
+const[Days,setDays]=useState([]);
 const [Name,setName]=useState([]);
-const [Speciality,setSpeciality]=useState("Eye Specialist");
+const [Speciality,setSpeciality]=useState('');
 
-const getdoctor=(Speciality)=>{
+const getdoctor= async (Speciality)=>{
   console.log(Speciality,"+======================================")
-  axios.get(`https://localhost:44314/api/appointments/getdoctors?search=${Speciality}`)
+   await axios.get(`https://localhost:44314/api/appointments/getdoctors?search=${Speciality}`)
   .then((response) => {
-    console.log(response)
+    console.log(response,"=========================+++++++++++++")
     console.log(response.data)
  console.log(response.data,"response")
  setName(response.data);
@@ -32,27 +32,33 @@ console.log(Name,"Name");
     // Code for handling the response
   })
   .catch((error) => {
-   setName([])
-   console.log(error)
+   setName(["Vaibhav","Kaka"])
+   window.alert(error)
+   console.log(error,)
     // Code for handling the error
   })
 }
 
-const getdays=(Name)=>{
+const getdays=  async(Name)=>{
   console.log(Name,"+===============''''''''''=======================")
-  axios.get(`https://localhost:44314/api/appointments/getdays?search=${Name}`)
+   await axios.get(`https://localhost:44314/api/appointments/getdays?search2=${Name}`)
   .then((response) => {
-    console.log(response)
-    //console.log(response.data)
- //console.log(response.data,"response")
- //setName(response.data);
+    console.log(response,"getdays")
+    console.log(response.data,"getdays")
+ console.log(response.data,"response")
+ console.log(response.data.toString(),"string value of days")
+ console.log(response.data.toString().split(','),"string to array days data")
+ //console.log(response.data.split(','),"days array")
+ //const temp=response.data.split(',')
+ //console.log(temp,"temp")
+ setDays(response.data.toString().split(','));
 //  for(let i;i<response.data.length;i++){
 //    Name.push(response.data[i]);
 //  }
 //var result=response.split(',')
-console.log(response.data,"+++++++++++++++++++++++++++++++++++++++++++");
-setDays(response.data);
-console.log(Days,"==================================================");
+// console.log(response.data,"+++++++++++++++++++++++++++++++++++++++++++");
+// setDays(response.data);
+// console.log(Days,"==================================================");
 
 
     // Code for handling the response
@@ -64,17 +70,20 @@ console.log(Days,"==================================================");
   })
 }
   const postdata=(data)=>{
-    axios.post("https://localhost:44314/api/appointments",data).then(   //${base_url}\api\Registers
+    axios.post("https://localhost:44314/api/appointments/bookappointment",data).then(   //${base_url}\api\Registers
       (response)=>{
         //success
         console.log(response);
         //toast.success("Patient Record added Successfully");
-        alert("patient data added");
-        console.log("Patient Record added Successfully");
+        alert("appointment booked successfully ");
+        console.log(" appointments booked Successfully");
+        window.location="/userhome"
+        
       },(error)=>{
         //error
         console.log(error);
         console.log("failed +++++++++++++++++++")
+        alert("something Wrong please enter valid data ");
       }
     );
   };
@@ -108,8 +117,8 @@ console.log(Days,"==================================================");
     <Col sm={6}>
     <Form.Group className="mb-3" controlId="PatientName">
      
-      <Form.Control type="text" placeholder=" Enter Patient Name" id="PatientName" name="PatientName" onChange={(e)=>{
-        setappointment({...appointment,PatientName:e.target.value})
+      <Form.Control type="text" placeholder=" Enter Patient Name" id="PatientName" name="patientName" onChange={(e)=>{
+        setappointment({...appointment,patientName:e.target.value})
       }}/>
     </Form.Group>
     </Col>
@@ -129,9 +138,9 @@ console.log(Days,"==================================================");
     <Col sm={6}>
     <Form.Group className="mb-3" controlId="Email">
    
-      <Form.Control type="email" placeholder="Enter Email" id="Email" name="Email" 
+      <Form.Control type="email" placeholder="Enter Email" id="email" name="email" 
       onChange={(e)=>{
-        setappointment({...appointment,Email:e.target.value})
+        setappointment({...appointment,email:e.target.value})
       }}/>
     </Form.Group>
     </Col>
@@ -147,13 +156,20 @@ console.log(Days,"==================================================");
     <Form.Select aria-label="Default select example" onChange={(e)=>{
       setappointment({...appointment,Speciality:e.target.value})
       setSpeciality(e.target.value)
-      getdoctor(Speciality)
+      getdoctor(e.target.value)
      
     }}>
     <option>Select Speciality:</option>
-    <option value="Neuro">Neuro</option>
-    <option value="Surgon">Surgon</option>
+    <option value="Dentist">Dentist</option>
+    <option value="Gynacologist">Gynacologist</option>
+    <option value="General Physician">General Physician</option>
+    <option value="NeuroSurgeon">NeuroSurgeon</option>
+    <option value="Surgeon">Surgeon</option>
     <option value="Eye Specialist">Eye Specialist</option>
+    <option value="Orthopedics">Orthopedics</option>
+    <option value="PlasticSurgeon">PlasticSurgeon</option>
+    <option value="Radiologist">Radiologist</option>
+    <option value="Cardiologist">Cardiologist</option>
   </Form.Select>
     </Form.Group> 
     </Col>
@@ -172,15 +188,17 @@ console.log(Days,"==================================================");
       getdays(e.target.value)
     }}>
     <option>Select Doctor</option>
-    {(Name)?Name.map((item,index) => (
+    {Name && Name.map((item,index) => (
       <option key={index} value={item}>
         {item}
       </option>
-    )):["Dhoni","Virat"].map((item,index)=>{
-      <option key={index} value={item}>
-      {item}
-    </option>
-    })}
+     ))
+     //:["Dhoni","Virat"].map((item,index)=>{
+    //   <option key={index} value={item}>
+    //   {item}
+    // </option>
+    // })
+  }
     
   </Form.Control>
     
@@ -194,21 +212,23 @@ console.log(Days,"==================================================");
     <Col sm={2}>
   <Form.Label>Days:</Form.Label>
     </Col>
-    <Col sm={6}> <Form.Group className="mb-3" controlId="ward">
+    <Col sm={6}> <Form.Group className="mb-3" controlId="day">
     
     <Form.Select aria-label="Default select example" onChange={(e)=>{
-      setappointment({...appointment,workingDays:e.target.value})
+      setappointment({...appointment,day:e.target.value})
     }}>
     <option>Select Available Days:</option>
-    {(Days.length>0)?Days.map((item,index) => (
+    {Days && Days.map((item,index) => (
       <option key={index} value={item}>
         {item}
       </option>
-    )):["Mon","Tue"].map((item,index)=>{
-      <option key={index} value={item}>
-      {item}
-    </option>
-    })}
+    ))
+    // :["Mon","Tue"].map((item,index)=>{
+    //   <option key={index} value={item}>
+    //   {item}
+    // </option>
+    // })
+  }
   </Form.Select>
     </Form.Group> 
     </Col>
@@ -219,9 +239,9 @@ console.log(Days,"==================================================");
     <Col sm={2}>
   <Form.Label>Date:</Form.Label>
     </Col>
-    <Col sm={6}>  <Form.Group className="mb-3" controlId="Date">
+    <Col sm={6}>  <Form.Group className="mb-3" controlId="date">
    
-    <Form.Control type="Date" placeholder="Enter Date" id="Date" name="date" onChange={(e)=>{
+    <Form.Control type="Date" placeholder="Enter Date" id="date" name="date" onChange={(e)=>{
       setappointment({...appointment,date:e.target.value})
     }}/>
   </Form.Group>
@@ -240,9 +260,9 @@ console.log(Days,"==================================================");
       setappointment({...appointment,time:e.target.value})
     }}>
     <option>Select Available slots:</option>
-    <option value="1">9 to 10</option>
-    <option value="2">10 to 11</option>
-    <option value="3">11 to 12</option>
+    <option value="9 AM to 12 PM">9 AM to 12 PM</option>
+    <option value="12PM to 2PM">12PM to 2PM</option>
+    <option value="3PM to 5PM">3PM to 5PM</option>
   </Form.Select>
     </Form.Group> 
     </Col>

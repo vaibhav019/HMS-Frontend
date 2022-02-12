@@ -45,9 +45,10 @@ export default function UpdateDoctor(props) {
       console.log("Status: ", response.status);
       console.log("Data: ", response.data);
       window.alert("Doctor data updated")
+      window.location = "/get-doctor"
     }).catch(error => {
       console.error('Something went wrong!', error);
-      window.alert("Something Wrong: Doctor data not updated")
+      window.alert("Something Wrong: Doctor data not updated Please enter valid details")
     });
  }
     const [doctor,setdoctor]=useState({});

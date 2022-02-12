@@ -17,6 +17,8 @@ import BloodRequesterDetails from './Bloodcamp/BloodDoonerDetails';
 import GetApointmentPage from '../User/GetApointmentPage';
 import VaccinationDetails from './VaccinationDetails';
 
+import GenerateBill from './Bill/GBill';
+
 export default function AdminHome() {
   return (
     <div >
@@ -57,6 +59,9 @@ export default function AdminHome() {
             <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-vaccination">
              All Vacccination Booking Details
             </Link>
+            <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/generate-bill">
+           Generate Bill
+           </Link>
 
               <Link className="list-group-item list-group-item-action bg-muted" variant="dark"  to="">
                 <div><br /><br /><br /><br /><br /></div>
@@ -83,6 +88,7 @@ export default function AdminHome() {
               <Route exact path="/get-appointment" component={GetApointmentPage} />
               <Route exact path="/get-vaccination" component={VaccinationDetails} />
               <Route exact path="/update-doctor/:DoctorID" component={UpdateDoctor} />
+              <Route exact path="/generate-bill" component={GenerateBill} />
             </Switch>
 
 

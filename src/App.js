@@ -16,6 +16,12 @@ import MainPage from './Components/MainPage'
 // import ViewDoctors from './Components/User/ViewDoctors';
 // import { BrowserRouter , Route, Switch,Link } from "react-router-dom";
  import UserHome from './Components/User/UserHome';
+import UpdatePatient from './Components/User/UpdatePatient';
+import Feedback from './Components/User/Feedback';
+import Help from './Components/Help';
+import Aboutus from './Components/Aboutus'
+import Contactus from './Components/Contactus'
+
  //import AdminHome from './Components/Admin/AdminHome';
 //import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import { ToastContainer} from 'react-toastify';
@@ -42,7 +48,10 @@ function App() {
     <Route exact path="/login" component={Login}/>
     <Route exact path="/userhome" component={UserHome}/>
    <Route exact route="/adminhome" component={AdminHome}/>
-   {/*<Route exact route="/main" component={MainPage}/>*/}
+   <Route exact path="/home" component={MainPage}/>
+   <Route exact path="/help" component={Help}/>
+   <Route exact path="/contactus" component={Contactus}/>
+   <Route exact path="/aboutus" component={Aboutus}/>
     </Switch>
     </BrowserRouter>
     </div>

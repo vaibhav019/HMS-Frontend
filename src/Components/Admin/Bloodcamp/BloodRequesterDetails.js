@@ -46,7 +46,7 @@ export default function BloodRequesterDetails() {
     return (
       <div  >
  
-        <Container fluid='sm' color='secondary' style={{ width: '800px' }} >
+       {/*} <Container fluid='sm' color='secondary' style={{ width: '800px' }} >*/}
           <h4>Blood Requester Details</h4>
           <Table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10}>
             <thead>
@@ -82,7 +82,7 @@ export default function BloodRequesterDetails() {
               </tr>)}
             </tbody>
           </Table>
-        </Container>
+       {/*} </Container>*/}
        <Button variant="warning"> <Link to="/bloodcamp" tag="a" action className="text-light">Back</Link></Button>
       </div>
       

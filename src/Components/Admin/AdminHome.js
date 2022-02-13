@@ -13,7 +13,7 @@ import AddAmbulance from './AddAmbulance'
 import Ambulance1 from '../User/Ambulance1'
 import BloodDashboard from './Bloodcamp/BloodDashboard';
 import BloodDonorDetails from './Bloodcamp/BloodDoonerDetails';
-import BloodRequesterDetails from './Bloodcamp/BloodDoonerDetails';
+import BloodRequesterDetails from './Bloodcamp/BloodRequesterDetails';
 import GetApointmentPage from '../User/GetApointmentPage';
 import VaccinationDetails from './VaccinationDetails';
 

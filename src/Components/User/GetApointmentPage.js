@@ -1,5 +1,5 @@
 import React  , { useState, useEffect } from 'react'
-import { Container } from 'react-bootstrap';
+import { Container,Button } from 'react-bootstrap';
 import axios from 'axios';
 export default function GetApointmentPage() {
   var heading = ['Name', 'email','Specialty','DoctorName','Day','date','time'];
@@ -44,11 +44,12 @@ export default function GetApointmentPage() {
       "speciality":"surgon"
    }
   ]);
+  const [isapproved,setisapproved] = useState(false)
   const deletedata=(appointmentID)=>{
-   axios.delete(`https://localhost:44314/api/appointments/${appointmentID}`).then(
+   axios.delete(`https://localhost:44314/api/appointments/remove/${appointmentID}`).then(
      (response)=>{
        console.log(response);
-       window.alert("one doctor data deleted");
+       window.alert("one appointment rejected");
       setdata(data.filter((c)=> appointmentID !==c.appointmentID));
      },(error)=>{
        console.log("Something went wrong",error);
@@ -93,8 +94,11 @@ export default function GetApointmentPage() {
                         <td>{item.day}</td>
                         <td>{item.date}</td>
                         <td>{item.time}</td> 
-                        <td><button >Accept</button></td>
-                        <td><button>Reject</button></td>
+                        <td><Button onClick={()=>{setisapproved(true)
+                        alert("appointment is approved.")
+                        }}>Accept</Button></td>
+                        <td><Button onClick={()=>{deletedata(item.appointment_ID)}}>Reject</Button></td>
+                       
                     </tr>)}
                   </tbody>
               </table>

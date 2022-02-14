@@ -48,7 +48,7 @@ export default function BloodRequesterDetails() {
  
        {/*} <Container fluid='sm' color='secondary' style={{ width: '800px' }} >*/}
           <h4>Blood Requester Details</h4>
-          <Table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10}>
+          <Table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} width="70%">
             <thead>
  
               <tr>
@@ -63,6 +63,7 @@ export default function BloodRequesterDetails() {
                 <th>Reuested Date</th>
                 <th>IsActive</th>
                 <th>Action</th>
+                <th></th>
               </tr>
             </thead>
  
@@ -79,6 +80,7 @@ export default function BloodRequesterDetails() {
                 <td>{item.RequestedOn}</td>
                 <td>{(item.IsActive)?'yes':'No'}</td>
                 <td><Button onClick={()=>deletedata(item.RequestID)} >Reject</Button></td>
+                <td><Button >Approve</Button></td>
               </tr>)}
             </tbody>
           </Table>

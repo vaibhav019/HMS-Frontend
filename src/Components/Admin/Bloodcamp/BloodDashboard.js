@@ -37,12 +37,6 @@ export default function BloodDashboard() {
         fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)"
-      },
-      {
-        label: "Second dataset",
-        data: [33, 25, 35, 51, 54, 76],
-        fill: false,
-        borderColor: "#742774"
       }
     ]
   };
@@ -114,23 +108,23 @@ console.log(data,"Data Entered")
 
   return (
     <div>
-      <h4>work in Progress....</h4>
+      <h4>Dashboard</h4>
       <Container>
         <Row>
 
           <Col>
-            <Card style={{ width: '15rem' }} bg='info'>
+            <Card style={{ width: '15rem' }} bg='warning'>
               <Card.Body>
                 <Card.Title>Blood Unit</Card.Title>
                 {/*<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>*/}
                 <Card.Text>
                   {bloodunit}
                 </Card.Text>
-                <Card.Link href="#">More Details</Card.Link>
+               <Card.Link href="#">More Details</Card.Link>
 
               </Card.Body>
             </Card> </Col>
-          <Col > <Card style={{ width: '15rem' }} bg='info'>
+          <Col > <Card style={{ width: '15rem' }} bg='warning'>
             <Card.Body>
               <Card.Title>Total Donor</Card.Title>
               {/*<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>*/}
@@ -138,10 +132,10 @@ console.log(data,"Data Entered")
                 {donordata}
               </Card.Text>
               <Card.Link href="/blood-donor-data" >All Donors</Card.Link>
-              <Card.Link href="#">More</Card.Link>
+            {/* <Card.Link href="#">more</Card.Link>*/}
             </Card.Body>
           </Card></Col>
-          <Col ><Card style={{ width: '15rem' }} bg='info'>
+          <Col ><Card style={{ width: '15rem' }} bg='warning'>
             <Card.Body>
               <Card.Title>Total request</Card.Title>
               {/*<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>*/}
@@ -149,15 +143,15 @@ console.log(data,"Data Entered")
                 {reqdata}
               </Card.Text>
               <Card.Link href="/blood-request-data" >All Requester</Card.Link>
-              <Card.Link href="#">More</Card.Link>
+            {/*}  <Card.Link href="#">More</Card.Link>*/}
             </Card.Body>
           </Card> </Col>
         </Row>
         {/*} <Link to="/blood-request-data" tag="a" action >Blood Requests data</Link>||
   <Link to="/blood-donor-data" tag="a" action >Blood Donors data</Link>*/}
       </Container>
-      <Container>
-
+      <Container className='my-3 '>
+<img src='https://th.bing.com/th/id/OIP.cxK4Mbn2o_ciUlz-PYmf6gHaD4?w=340&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7' alt="dashboard" width={850} height={350}/>
       
      </Container>
     </div>

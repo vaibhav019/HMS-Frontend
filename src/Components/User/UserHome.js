@@ -14,15 +14,16 @@ import Payment from './Payment';
 import Ambulance from './Ambulance'
 import PatientDetailbymail from './PatientDetailbymail'
 //import Register from '../Register';
+//import './userhome.css'
 import VaccinationDetails from '../Admin/VaccinationDetails';
 import GetAppointmentbymail from './GetAppointmentbymail';
-
+import CancleAppointmentPage from './CancleAppoinment';
 export default function UserHome() {
     return (
-        <div >
+        <div  className="userhome">
             <BrowserRouter>
-
-                <Row>
+       
+                <Row >
                     <Col sm={3}>
                         <ListGroup >
 
@@ -36,7 +37,7 @@ export default function UserHome() {
                             <Link className="list-group-item list-group-item-action bg-muted" action variant="dark" tag="a" to="/book-appointment">
                                 Book Online Appoinment
                             </Link>
-                            <Link className="list-group-item list-group-item-action bg-muted" action variant="dark" tag="a" to="/get-appointmentbyemail">
+                            <Link className="list-group-item list-group-item-action bg-muted" action variant="dark" tag="a" to="/cancle-appointment">
                                Cancel Appointment 
                             </Link>
                             <Link className="list-group-item list-group-item-action bg-muted" action variant="dark" tag="a" to="/payment">
@@ -82,6 +83,7 @@ export default function UserHome() {
                             <Route exact path="/blood-request" component={BloodRequestPage} />
                             <Route exact path="/vaccination" component={VaccinationDetails} />
                            <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>
+                           <Route exact path="/cancle-appointment" component={CancleAppointmentPage}  />
                             </Switch>
 
 

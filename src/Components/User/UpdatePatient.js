@@ -35,14 +35,14 @@ export default function UpdatePatient() {
   };
   const updatedata=(data)=>{
     console.log("inside Updatedata method",params)
-    console.log("params is working",params.PatientID)
-     console.log(params.PatientID)
-    axios.put(`https://localhost:44314/api/Patients/${params.PatientID}`, data)
+    console.log("params is working",params.PateintID)
+     console.log(params.PateintID)
+    axios.put(`https://localhost:44314/api/Patients/${params.PateintID}`, data)
     .then(response => {
       console.log("Status: ", response.status);
       console.log("Data: ", response.data);
       window.alert("patient data updated")
-      window.location = "/getpatientbymail"
+      window.location = "/adminuser"
     }).catch(error => {
       console.error('Something went wrong!', error);
       window.alert("Something Wrong: Doctor data not updated Please enter valid details")
@@ -63,8 +63,7 @@ export default function UpdatePatient() {
       //   password: data.get('password'),
       // });
     };
-
-
+ 
   return (
     
     <div>

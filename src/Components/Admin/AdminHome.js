@@ -18,6 +18,7 @@ import GetApointmentPage from '../User/GetApointmentPage';
 import VaccinationDetails from './VaccinationDetails';
 
 import GenerateBill from './Bill/GBill';
+import UpdatePatient from '../User/UpdatePatient';
 
 export default function AdminHome() {
   return (
@@ -89,6 +90,7 @@ export default function AdminHome() {
               <Route exact path="/get-vaccination" component={VaccinationDetails} />
               <Route exact path="/update-doctor/:DoctorID" component={UpdateDoctor} />
               <Route exact path="/generate-bill" component={GenerateBill} />
+              <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>
             </Switch>
 
 

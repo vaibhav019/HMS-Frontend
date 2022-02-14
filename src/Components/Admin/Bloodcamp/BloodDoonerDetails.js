@@ -78,7 +78,7 @@ export default function BloodDonorDetails() {
                 <td>{item.DonorWeight}</td>
                 <td>{(item.Ishealthy)?'yes':'No'}</td>
                 <td><Button onClick={()=>deletedata(item.DonorID)} >Reject</Button></td>
-                <td></td>
+                <td><Button >Approve</Button></td>
               </tr>)}
             </tbody>
           </Table>

@@ -34,7 +34,7 @@ import Contactus from './Components/Contactus'
 //import {role} from './Components/Login'
 
 function App() {
-  console.log(localStorage.getItem('role'),"====================================")
+ // console.log(localStorage.getItem('role'),"====================================")
  
   return(
     <div>

@@ -14,6 +14,29 @@ export default function UpdateDoctor(props) {
   //     password: data.get('password'),
   //   });
   // };
+//https://localhost:44314/api/doctors/4
+
+
+const [data,setdata]=useState([])
+const fetchPost = async () => {
+  console.log("created")
+const response = await fetch(
+  `https://localhost:44314/api/doctors/${params.DoctorID}`       //https://api.chucknorris.io/jokes/random
+);
+console.log("working")
+const data = await response.json();
+console.log(data,"Data Entered")
+setdata(data);
+//toast.success("data loaded successfully");
+console.log(data)
+
+
+};
+useEffect(() => {
+fetchPost();
+}, []);
+
+
 
   const options = [
     { value: 'MONDAY', label: 'MONDAY' },
@@ -69,7 +92,7 @@ export default function UpdateDoctor(props) {
   return (
     
     <div>
-    <Container fluid className='mb-3'> <h4 >Add Doctor </h4></Container>
+    <Container fluid className='mb-3'> <h4 >Update Doctor </h4></Container>
     
 
     <Container>
@@ -81,7 +104,7 @@ export default function UpdateDoctor(props) {
     <Col sm={6}>
     <Form.Group className="mb-3" controlId="Name">
      
-      <Form.Control type="text" placeholder=" Enter Doctor Name" id="Name" name="Name" onChange={(e)=>{
+      <Form.Control type="text" defaultValue={data.Name} placeholder=" Enter Doctor Name" id="Name" name="Name" onChange={(e)=>{
         setdoctor({...doctor,Name:e.target.value})
       }}/>
     </Form.Group>
@@ -99,7 +122,7 @@ export default function UpdateDoctor(props) {
     
     <Col sm={6}><Form.Group className="mb-3" controlId="PhoneNumber">
    
-    <Form.Control type="number" placeholder=" Enter Phone no." id="Phonenumber" name="PhoneNumber" 
+    <Form.Control type="number"  defaultValue={data.PhoneNumber} placeholder=" Enter Phone no." id="Phonenumber" name="PhoneNumber" 
     onChange={(e)=>{
       setdoctor({...doctor,PhoneNumber:e.target.value})
     }}/>
@@ -115,7 +138,7 @@ export default function UpdateDoctor(props) {
     <Col sm={6}>
     <Form.Group className="mb-3" controlId="Email">
    
-      <Form.Control type="email" placeholder="Enter Email" id="Email" Name="Email" onChange={(e)=>{
+      <Form.Control type="email"  defaultValue={data.Email} placeholder="Enter Email" id="Email" Name="Email" onChange={(e)=>{
         setdoctor({...doctor,Email:e.target.value})
       }}/>
     </Form.Group>
@@ -129,7 +152,7 @@ export default function UpdateDoctor(props) {
     </Col>
     <Col sm={6}> <Form.Group className="mb-3" controlId="WorkingDays">
 
-    <Form.Control type="text" placeholder=" Enter Available Days" id="Days" name="WorkingDays" onChange={(e)=>{
+    <Form.Control type="text"  defaultValue={data.WorkingDays} placeholder=" Enter Available Days" id="Days" name="WorkingDays" onChange={(e)=>{
       setdoctor({...doctor,WorkingDays:e.target.value})
     }}/>
   
@@ -171,7 +194,7 @@ export default function UpdateDoctor(props) {
     </Col>
     <Col sm={6}> <Form.Group className="mb-3" controlId="Speciality" name="Speciality">
     
-    <Form.Select aria-label="Default select example" onChange={(e)=>{
+    <Form.Select aria-label="Default select example"  defaultValue={data.Speciality} onChange={(e)=>{
       setdoctor({...doctor,Speciality:e.target.value})
     }}>
     <option>Select Speciality:</option>
@@ -192,7 +215,7 @@ export default function UpdateDoctor(props) {
     
     <Col sm={6}><Form.Group className="mb-3" controlId="Experience">
    
-    <Form.Control type="number" placeholder=" Enter Experience." id="experience" name="Experience" onChange={(e)=>{
+    <Form.Control type="number"  defaultValue={data.Experience} placeholder=" Enter Experience." id="experience" name="Experience" onChange={(e)=>{
       setdoctor({...doctor,Experience:e.target.value})
     }}/>
   </Form.Group> </Col>

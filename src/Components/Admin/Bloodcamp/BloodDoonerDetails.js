@@ -7,7 +7,10 @@ import { IconButton } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import emailjs from 'emailjs-com';
 export default function BloodDonorDetails() {
+  //const [isapproved,setisapproved]=useState(false)
+  
     const [data, setdata] = useState([])
     console.log(data, "stored")
     const fetchPost = async () => {
@@ -27,9 +30,19 @@ export default function BloodDonorDetails() {
     useEffect(() => {
       fetchPost();
     }, []);
+  const templateParams={
+    from_name:"Vaibhav Singh",
+    to_name :'',
+    message:'Hi',
+    reply_to:''
+  }
 
+    // const sendemauil=()=>{
+    //   emailjs.send('service_b8mbf8v','template_3tc327p', templateParams, 'user_IQODLOdj6sRnQAnI9S87a');
+    // }
     const deletedata=(RequestID)=>{
       console.log(RequestID,"ggggggggggfff+++++++++++++++++++++++")
+
       axios.delete(`https://localhost:44314/api/BloodRequest/${RequestID}`).then(
         (response)=>{
           console.log(response);
@@ -45,9 +58,9 @@ export default function BloodDonorDetails() {
     return (
       <div  >
  
-       {/*} <Container fluid='sm' color='secondary' style={{ width: '800px',ml:0 }} >*/}
+      {/*} <Container  color='secondary' style={{ width: '600px',ml:0 }} className="m-1">*/}
           <h5>Blood Donor Details</h5>
-          <Table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10}>
+          <Table striped bordered hover size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: '700px',ml:0 }}>
             <thead>
  
               <tr>
@@ -62,6 +75,7 @@ export default function BloodDonorDetails() {
                 <th>Weight</th>
                 <th>IsHealthy</th>
                 <th>Action</th>
+                <th></th>
               </tr>
             </thead>
  
@@ -77,8 +91,48 @@ export default function BloodDonorDetails() {
                 <td>{item.Email}</td>
                 <td>{item.DonorWeight}</td>
                 <td>{(item.Ishealthy)?'yes':'No'}</td>
-                <td><Button onClick={()=>deletedata(item.DonorID)} >Reject</Button></td>
-                <td><Button >Approve</Button></td>
+                <td><Button onClick={()=>{
+                  emailjs.send('service_b8mbf8v',
+                  'template_3tc327p', 
+                  {
+                    from_name:"Vaibhav Singh",
+                    to_name :item.DonorName,
+                    message:'Your request is rejected  now  You can not visit in our center',
+                    reply_to:'vaibhavsengarnetid@gmail.com',
+                    from_Email:item.Email
+                  }, 
+                  'user_IQODLOdj6sRnQAnI9S87a').then(res => {
+                    console.log(res);
+                    deletedata(item.DonorID)
+                    window.alert("email sent to donor regarding approvement")
+                })
+                .catch(err => {
+                    console.log(err);
+                    window.alert(err)
+                })
+                }} >Reject</Button></td>
+                <td><Button 
+                onClick={()=>{
+                
+                  emailjs.send('service_b8mbf8v',
+                  'template_3tc327p', 
+                  {
+                    from_name:"Vaibhav Singh",
+                    to_name :item.DonorName,
+                    message:'Your request is approved  now  You can visit in our center',
+                    reply_to:'vaibhavsengarnetid@gmail.com',
+                    from_Email:item.Email
+                  }, 
+                  'user_IQODLOdj6sRnQAnI9S87a').then(res => {
+                    console.log(res);
+                    window.alert("email sent to donor regarding approvement")
+                })
+                .catch(err => {
+                    console.log(err);
+                    window.alert(err)
+                })
+                }}
+                >Approve</Button></td>
               </tr>)}
             </tbody>
           </Table>

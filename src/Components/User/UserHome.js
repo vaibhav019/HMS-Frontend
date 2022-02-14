@@ -18,6 +18,8 @@ import PatientDetailbymail from './PatientDetailbymail'
 import VaccinationDetails from '../Admin/VaccinationDetails';
 import GetAppointmentbymail from './GetAppointmentbymail';
 import CancleAppointmentPage from './CancleAppoinment';
+import Donordetailbyphn from './Donordetailbyphn';
+import Requesterdetailbyphn from './Requesterdetailbyphn';
 export default function UserHome() {
     return (
         <div  className="userhome">
@@ -84,6 +86,8 @@ export default function UserHome() {
                             <Route exact path="/vaccination" component={VaccinationDetails} />
                            <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>
                            <Route exact path="/cancle-appointment" component={CancleAppointmentPage}  />
+                           <Route  exact path="/search-blood-donor" component={Donordetailbyphn} />
+                           <Route exact path="/search-blood-request" component={Requesterdetailbyphn} />
                             </Switch>
 
 

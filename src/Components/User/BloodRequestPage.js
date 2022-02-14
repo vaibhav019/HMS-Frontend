@@ -2,6 +2,7 @@ import React ,{useState,useEffect,Fragment}  from 'react'
 import { Container, Form,Row,Col,Button } from 'react-bootstrap';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 export default function BloodRequestPage() {
   const postdata=(data)=>{
@@ -38,7 +39,10 @@ export default function BloodRequestPage() {
   return (
 
     <div>
-    <Container fluid className='mb-3 p-3'><h4>Application Form for Blood Receiver</h4></Container>
+    
+    <Container fluid className='mb-3 p-3'><h4>Application Form for Blood Receiver</h4>
+    <Link to="/search-blood-request" tag="a" action >Show Previous History</Link>
+    </Container>
    
     <Container fluid className="ml-3" >
     <Form onSubmit={handleSubmit}>

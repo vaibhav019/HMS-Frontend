@@ -63,11 +63,30 @@ export default function UpdatePatient() {
       //   password: data.get('password'),
       // });
     };
+
+    const [data,setdata]=useState([])
+const fetchPost = async () => {
+  console.log("created")
+const response = await fetch(
+  `https://localhost:44314/api/Patients/${params.PateintID}`       //https://api.chucknorris.io/jokes/random
+);
+console.log("working")
+const data = await response.json();
+console.log(data,"Data Entered")
+setdata(data);
+//toast.success("data loaded successfully");
+console.log(data)
+
+
+};
+useEffect(() => {
+fetchPost();
+}, []);
  
   return (
     
     <div>
-    <Container fluid className='mb-3 p-3'> <h4 >Add Patient </h4></Container>
+    <Container fluid className='mb-3 p-3'> <h4 >Update Patient </h4></Container>
     
 
     <Container fluid className="ml-3" >
@@ -77,7 +96,7 @@ export default function UpdatePatient() {
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="FirstName">
      
-      <Form.Control type="text" placeholder=" Enter First Name" id="FirstName" name="FirstName" onChange={(e)=>{
+      <Form.Control type="text" defaultValue={data.FirstName} placeholder=" Enter First Name" id="FirstName" name="FirstName" onChange={(e)=>{
         setpatient({...patient,FirstName:e.target.value})
       }}/>
     </Form.Group>
@@ -86,7 +105,7 @@ export default function UpdatePatient() {
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="LastName">
    
-      <Form.Control type="text" placeholder="Enter Last Name" id="LastName" name="LastName"
+      <Form.Control type="text" defaultValue={data.LastName} placeholder="Enter Last Name" id="LastName" name="LastName"
       onChange={(e)=>{
         setpatient({...patient,LastName:e.target.value})
       }}/>
@@ -100,7 +119,7 @@ export default function UpdatePatient() {
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="Email">
    
-      <Form.Control type="email" placeholder="Enter Email" id="Email" name="Email" 
+      <Form.Control type="email" defaultValue={data.Email} placeholder="Enter Email" id="Email" name="Email" 
       onChange={(e)=>{
         setpatient({...patient,Email:e.target.value})
       }}/>
@@ -109,7 +128,7 @@ export default function UpdatePatient() {
     
     <Col sm={4}><Form.Group className="mb-3" controlId="ContactNumber">
    
-    <Form.Control type="number" placeholder=" Enter Contact no." id="ContactNumber" name="ContactNumber" 
+    <Form.Control type="number" defaultValue={data.ContactNumber} placeholder=" Enter Contact no." id="ContactNumber" name="ContactNumber" 
     onChange={(e)=>{
       setpatient({...patient,ContactNumber:e.target.value})
     }}/>
@@ -121,7 +140,7 @@ export default function UpdatePatient() {
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="Age">
      
-      <Form.Control type="number" placeholder=" Enter Age" id="Age" name="Age" 
+      <Form.Control type="number" defaultValue={data.Age} placeholder=" Enter Age" id="Age" name="Age" 
       onChange={(e)=>{
         setpatient({...patient,Age:e.target.value})
       }}/>
@@ -136,7 +155,7 @@ export default function UpdatePatient() {
         setpatient({...patient,gender:e.target.value})
       }}/>
     */}
-    <Form.Select aria-label="Select Gender" name="gender"  onChange={(e)=>{
+    <Form.Select aria-label="Select Gender" defaultValue={data.gender} name="gender"  onChange={(e)=>{
       setpatient({...patient,gender:e.target.value})
     }} >
     <option>Select gender</option>
@@ -154,7 +173,7 @@ export default function UpdatePatient() {
   
     <Form.Group className="mb-3" controlId="Address">
     
-    <Form.Control as="textarea" rows={2} id="Address"  placeholder="Enter Address" name="Address" 
+    <Form.Control as="textarea" defaultValue={data.Address} rows={2} id="Address"  placeholder="Enter Address" name="Address" 
     onChange={(e)=>{
       setpatient({...patient,Address:e.target.value})
     }}/>
@@ -166,7 +185,7 @@ export default function UpdatePatient() {
     <Col sm={8}>
     <Form.Group className="mb-3" controlId="Symptoms">
     
-    <Form.Control as="textarea" rows={2} id="Symptoms"  placeholder="Enter Symptoms" name="Symptoms" onChange={(e)=>{
+    <Form.Control as="textarea" defaultValue={data.Symptoms} rows={2} id="Symptoms"  placeholder="Enter Symptoms" name="Symptoms" onChange={(e)=>{
       setpatient({...patient,Symptoms:e.target.value})
     }}/>
   </Form.Group>
@@ -177,7 +196,7 @@ export default function UpdatePatient() {
     <Col sm={8}>
     <Form.Group className="mb-3" controlId="Ward">
     
-    <Form.Select aria-label="Select Ward" name="Ward"  onChange={(e)=>{
+    <Form.Select aria-label="Select Ward" defaultValue={data.Ward} name="Ward"  onChange={(e)=>{
       setpatient({...patient,Ward:e.target.value})
     }} >
     <option>Select Ward</option>

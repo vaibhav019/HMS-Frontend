@@ -26,7 +26,7 @@ export default function AdminHome() {
       <Router>
 
         <Row>
-          <Col sm={3}>
+          <Col sm={2}>
 
             <ListGroup >
             
@@ -70,7 +70,7 @@ export default function AdminHome() {
 
             </ListGroup>
           </Col>
-          <Col sm={9}>
+          <Col sm={10}>
           
             <Switch>
               <Route exact path="/" component={CarouselPage} />

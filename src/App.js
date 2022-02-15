@@ -3,7 +3,7 @@ import './App.css';
 // import Adddoctor from './Components/Admin/Adddoctor';
 // import AddPatient from './Components/User/AddPatient';
 import AdminHome from './Components/Admin/AdminHome';
-//import Footer from './Components/Footer';
+import Footer from './Components/Footer';
 import Header from './Components/Header';
 import MainPage from './Components/MainPage'
  import Login from './Components/Login';
@@ -18,7 +18,7 @@ import MainPage from './Components/MainPage'
  import UserHome from './Components/User/UserHome';
 import UpdatePatient from './Components/User/UpdatePatient';
 import Feedback from './Components/User/Feedback';
-import Help from './Components/Help';
+
 import Aboutus from './Components/Aboutus'
 import Contactus from './Components/Contactus'
 
@@ -49,10 +49,12 @@ function App() {
     <Route exact path="/userhome" component={UserHome}/>
    <Route exact route="/adminhome" component={AdminHome}/>
    <Route exact path="/home" component={MainPage}/>
-   <Route exact path="/help" component={Help}/>
+   
    <Route exact path="/contactus" component={Contactus}/>
    <Route exact path="/aboutus" component={Aboutus}/>
+   <Route exact path="/home" component={MainPage}/>
     </Switch>
+    
     </BrowserRouter>
     </div>
   )

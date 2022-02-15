@@ -19,6 +19,7 @@ import VaccinationDetails from './VaccinationDetails';
 
 import GenerateBill from './Bill/GBill';
 import UpdatePatient from '../User/UpdatePatient';
+import GetVaccinationRequests from './GetVaccinationRequests';
 
 export default function AdminHome() {
   return (
@@ -28,43 +29,43 @@ export default function AdminHome() {
         <Row>
           <Col sm={2}>
 
-            <ListGroup >
+            <ListGroup role="tablist" >
             
               {/*<Link className="list-group-item list-group-item-action bg-muted" variant="primary" action tag="a" to="/add-patient">
                 Add Patient Records
   </Link>*/}
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-patients">
+              <Link    className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"   tag="a" to="/get-patients">
                Patient Records
               </Link>
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/add-doctor">
+              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/add-doctor">
                 Add Doctor Details
               </Link>
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-doctor">
+              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark" tag="a" to="/get-doctor">
                Doctor Details
             </Link>
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/bloodcamp">
+              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/bloodcamp">
                 Blood Camp
               </Link>
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/add-ambulance">
+              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/add-ambulance">
                 Add Ambulance
               </Link>
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-ambulance">
+              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/get-ambulance">
                 View Ambulance
               </Link>
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-feedback">
+              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/get-feedback">
                 feedback recieved
               </Link>
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-appointment">
+              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/get-appointment">
              All Appoitments
             </Link>
-            <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/get-vaccination">
+            <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/get-vaccination">
              All Vacccination Booking Details
             </Link>
-            <Link className="list-group-item list-group-item-action bg-muted" variant="dark" tag="a" to="/generate-bill">
+            <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"   tag="a" to="/generate-bill">
            Generate Bill
            </Link>
 
-              <Link className="list-group-item list-group-item-action bg-muted" variant="dark"  to="">
+              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  to="">
                 <div><br /><br /><br /><br /><br /></div>
               </Link>
 
@@ -73,7 +74,7 @@ export default function AdminHome() {
           <Col sm={10}>
           
             <Switch>
-              <Route exact path="/" component={CarouselPage} />
+              <Route exact path="/adminhome" component={CarouselPage} />
   {/*} <Route exact path="/add-patient" component={AddPatient} */}
               <Route exact path="/get-patients" component={ViewPatients}/>
              
@@ -87,10 +88,11 @@ export default function AdminHome() {
               <Route exact path="/blood-request-data" component={BloodRequesterDetails} />
               <Route exact path="/blood-donor-data" component={BloodDonorDetails} />
               <Route exact path="/get-appointment" component={GetApointmentPage} />
-              <Route exact path="/get-vaccination" component={VaccinationDetails} />
+              <Route exact path="/get-vaccination" component={GetVaccinationRequests} />
               <Route exact path="/update-doctor/:DoctorID" component={UpdateDoctor} />
               <Route exact path="/generate-bill" component={GenerateBill} />
               <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>
+             
             </Switch>
 
 

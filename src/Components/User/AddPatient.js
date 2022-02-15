@@ -50,7 +50,17 @@ export default function AddPatient() {
 
   return (
     
-    <div>
+    <div style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=891&q=80"})`
+    , position: 'absolute',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    width: '100%',
+     height: '100%',
+    opacity: .8,
+    content: '""',
+    display: 'block',
+    marginTop:0
+    }}>
     <Container fluid className='mb-3 p-3'> <h4 >Add Patient </h4></Container>
     
 

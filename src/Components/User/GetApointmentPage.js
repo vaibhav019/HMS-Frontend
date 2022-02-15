@@ -1,6 +1,7 @@
 import React  , { useState, useEffect } from 'react'
 import { Container,Button } from 'react-bootstrap';
 import axios from 'axios';
+import emailjs from 'emailjs-com';
 export default function GetApointmentPage() {
   var heading = ['Name', 'email','Specialty','DoctorName','Day','date','time'];
 
@@ -75,7 +76,17 @@ export default function GetApointmentPage() {
   }, []);
   return (
      
-    <div className="App">
+    <div className="App" style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"})`
+    , position: 'absolute',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    width: '100%',
+     height: '100%',
+    opacity: .8,
+    content: '""',
+    display: 'block',
+    marginTop:0
+    }}>
     <Container>
     <h4>All Appoitnment</h4>
     </Container>
@@ -96,8 +107,44 @@ export default function GetApointmentPage() {
                         <td>{item.time}</td> 
                         <td><Button onClick={()=>{setisapproved(true)
                         alert("appointment is approved.")
+                        emailjs.send('service_b8mbf8v',
+          'template_3tc327p', 
+          {
+            from_name:"Vaibhav Singh",
+            to_name :item.DonorName,
+            message:"Your request is approved now  You can visit in our center  on your time",
+            reply_to:'vaibhavsengarnetid@gmail.com',
+            from_Email:item.Email
+          }, 
+          'user_IQODLOdj6sRnQAnI9S87a').then(res => {
+            console.log(res);
+            window.alert("email sent to donor regarding approvement")
+        })
+        .catch(err => {
+            console.log(err);
+            window.alert(err)
+        })
+
                         }}>Accept</Button></td>
-                        <td><Button onClick={()=>{deletedata(item.appointment_ID)}}>Reject</Button></td>
+                        <td><Button onClick={()=>{
+                          emailjs.send('service_b8mbf8v',
+          'template_3tc327p', 
+          {
+            from_name:"Vaibhav Singh",
+            to_name :item.DonorName,
+            message:"Your request is rejected  now  You can not visit in our center ",
+            reply_to:'vaibhavsengarnetid@gmail.com',
+            from_Email:item.Email
+          }, 
+          'user_IQODLOdj6sRnQAnI9S87a').then(res => {
+            console.log(res);
+            window.alert("email sent to donor regarding approvement")
+        })
+        .catch(err => {
+            console.log(err);
+            window.alert(err)
+        })
+                          deletedata(item.appointment_ID)}}>Reject</Button></td>
                        
                     </tr>)}
                   </tbody>

@@ -13,13 +13,30 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import Paper from '@mui/material/Paper';
 import base_url from '../api/api'
+import Paper from '@mui/material/Paper';
 //import { ToastContainer, toast } from 'react-toastify';
 //import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import {Redirect} from 'react-router-dom'
 const theme = createTheme();
 
+const styles = {
+  paperContainer: {
+      backgroundImage: `url(${"https://media.istockphoto.com/photos/mature-doctor-and-nurse-discussing-patient-case-picture-id1307543555?b=1&k=20&m=1307543555&s=170667a&w=0&h=KKk1RkwzUkT_a6Kqf0jh7aBEVpIMG048FALjEAPyDp0="})`,
+      position: 'absolute',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      width: '100%',
+       height: '100%',
+      opacity: 0.8,
+      content: '""',
+      display: 'block',
+      Width:1000,
+      height:1000,
+      marginTop:0
+
+  }
+};
 export default function Register() {
   const [data,setdata]=useState([]);
 
@@ -112,9 +129,9 @@ const[emailerror,setemailerror]=useState('')
   };
 
   return (
+    <Paper style={styles.paperContainer}>
     <ThemeProvider theme={theme}>
-     
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Grid
           item
@@ -122,7 +139,7 @@ const[emailerror,setemailerror]=useState('')
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://th.bing.com/th/id/R.de07f2b6e4adc36042bd172fb044eaa9?rik=3y8Oab32JuSqtg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fhospital-png-hd-images-energy-efficient-and-comfortable-innovative-and-cost-saving-3084.png&ehk=yJQSr0xLDpH0WA2HHRf5VgtvSRuKroTKkINqoL9Y8U4%3d&risl=&pid=ImgRaw&r=0)',  //https://source.unsplash.com/random
+            backgroundImage: 'url(https://source.unsplash.com/random)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -130,7 +147,6 @@ const[emailerror,setemailerror]=useState('')
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
             marginTop: 2,
@@ -266,11 +282,9 @@ const[emailerror,setemailerror]=useState('')
             </Grid>
           </Box>
         </Box>
-        </Grid>
-        </Grid>
-        
-        
-     
+        {/*  <Copyright sx={{ mt: 5 }} />*/}
+      </Container>
     </ThemeProvider>
+    </Paper>
   );
 }

@@ -4,6 +4,7 @@ import { Table,Button, Container } from 'react-bootstrap';
 // import { pink } from '@mui/material/colors';
 // import EditIcon from '@mui/icons-material/Edit';
 // import { IconButton } from '@mui/material';
+import emailjs from 'emailjs-com';
 import axios from 'axios';
 // import { toast } from 'react-toastify';
 import {Link} from 'react-router-dom'
@@ -44,7 +45,17 @@ export default function BloodRequesterDetails() {
       }
    
     return (
-      <div  >
+      <div style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"})`
+      , position: 'absolute',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      width: '100%',
+       height: '100%',
+      opacity: .8,
+      content: '""',
+      display: 'block',
+      marginTop:0
+      }} >
  
        {/*} <Container fluid='sm' color='secondary' style={{ width: '800px' }} >*/}
           <h4>Blood Requester Details</h4>
@@ -79,8 +90,47 @@ export default function BloodRequesterDetails() {
                 <td>{item.RequestedBloodtype}</td>
                 <td>{item.RequestedOn}</td>
                 <td>{(item.IsActive)?'yes':'No'}</td>
-                <td><Button onClick={()=>deletedata(item.RequestID)} >Reject</Button></td>
-                <td><Button >Approve</Button></td>
+                <td><Button onClick={()=>{
+                  emailjs.send('service_b8mbf8v',
+          'template_3tc327p', 
+          {
+            from_name:"Vaibhav Singh",
+            to_name :item.DonorName,
+            message:"Your request is rejected now  You can not visit in our center ",
+            reply_to:'vaibhavsengarnetid@gmail.com',
+            from_Email:item.Email
+          }, 
+          'user_IQODLOdj6sRnQAnI9S87a').then(res => {
+            console.log(res);
+            window.alert("email sent to donor regarding approvement")
+        })
+        .catch(err => {
+            console.log(err);
+            window.alert(err)
+        })
+             deletedata(item.RequestID)}} >Reject</Button></td>
+                <td><Button 
+                onClick={()=>{
+                  emailjs.send('service_b8mbf8v',
+          'template_3tc327p', 
+          {
+            from_name:"Vaibhav Singh",
+            to_name :item.DonorName,
+            message:`Your request is approved  now  You can  visit in our center on ${item.RequestedOn+2}`,
+            reply_to:'vaibhavsengarnetid@gmail.com',
+            from_Email:item.Email
+          }, 
+          'user_IQODLOdj6sRnQAnI9S87a').then(res => {
+            console.log(res);
+            window.alert("email sent to donor regarding approvement")
+        })
+        .catch(err => {
+            console.log(err);
+            window.alert(err)
+        })
+
+                }}
+                >Approve</Button></td>
               </tr>)}
             </tbody>
           </Table>

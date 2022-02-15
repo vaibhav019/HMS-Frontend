@@ -32,7 +32,7 @@ console.log(Name,"Name");
     // Code for handling the response
   })
   .catch((error) => {
-   setName(["Vaibhav","Kaka"])
+   setName(["Not Available"])
    window.alert(error)
    console.log(error,)
     // Code for handling the error
@@ -65,7 +65,7 @@ const getdays=  async(Name)=>{
   })
   .catch((error) => {
    console.log(error)
-   setDays('');
+   setDays(['Not Available']);
     // Code for handling the error
   })
 }
@@ -104,7 +104,17 @@ const getdays=  async(Name)=>{
     
   return (
     
-    <div>
+    <div style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"})`
+    , position: 'absolute',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    width: '100%',
+     height: '100%',
+    opacity: 1,
+    content: '""',
+    display: 'block',
+    marginTop:0
+    }}>
     <Container fluid className='mb-3 p-3'> <h4 >Book appointment </h4></Container>
     
 

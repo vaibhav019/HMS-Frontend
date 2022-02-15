@@ -7,6 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -14,6 +15,25 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+
+
+const styles = {
+  paperContainer: {
+      backgroundImage: `url(${"https://media.istockphoto.com/photos/mature-doctor-and-nurse-discussing-patient-case-picture-id1307543555?b=1&k=20&m=1307543555&s=170667a&w=0&h=KKk1RkwzUkT_a6Kqf0jh7aBEVpIMG048FALjEAPyDp0="})`,
+      position: 'absolute',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      width: '100%',
+       height: '100%',
+      opacity: 0.6,
+      content: '""',
+      display: 'block',
+      Width:1000,
+      height:1000,
+      marginTop:0
+
+  }
+};
 const theme = createTheme();
 export var role='';
 export default function Login(props) {
@@ -76,12 +96,14 @@ export default function Login(props) {
     };
 
   return (
+    <div>
+    <Paper style={styles.paperContainer}>
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 0,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -168,5 +190,7 @@ export default function Login(props) {
         {/*<Copyright sx={{ mt: 8, mb: 4 }} />*/}
       </Container>
     </ThemeProvider>
+    </Paper>
+    </div>
   );
 }

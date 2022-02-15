@@ -38,7 +38,17 @@ export default function BloodDonationPage() {
 
   return (
 
-    <div>
+    <div style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"})`
+    , position: 'absolute',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    width: '100%',
+     height: '100%',
+    opacity: .8,
+    content: '""',
+    display: 'block',
+    marginTop:0
+    }}>
 
     <Container fluid className='mb-3 p-3'><h4>Application Form for Blood Donation</h4>
     <Link to="/search-blood-donor" tag="a" action >Show Previous History</Link>
@@ -102,9 +112,9 @@ export default function BloodDonationPage() {
     setdonor({...Donor,DonorGender:e.target.value})
   }} >
   <option>Select Gender</option>
-  <option value="1">Female</option>
-  <option value="2">Male</option>
-  <option value="3">Others</option>
+  <option value="Female">Female</option>
+  <option value="Male">Male</option>
+  <option value="Other">Others</option>
 
 </Form.Select>
   </Form.Group>
@@ -117,14 +127,14 @@ export default function BloodDonationPage() {
     setdonor({...Donor,DonorBloodtype:e.target.value})
   }} >
   <option>Select BloodType</option>
-  <option value="1">O+</option>
-  <option value="2">O-</option>
-  <option value="3">A+</option>
-  <option value="4">A-</option>
-  <option value="5">B+</option>
-  <option value="6">B-</option>
-  <option value="7">AB+</option>
-  <option value="8">AB-</option>
+  <option value="O+">O+</option>
+  <option value="O-">O-</option>
+  <option value="A+">A+</option>
+  <option value="A-">A-</option>
+  <option value="B+">B+</option>
+  <option value="B-">B-</option>
+  <option value="AB+">AB+</option>
+  <option value="AB-">AB-</option>
 </Form.Select>
   </Form.Group>
   </Col>

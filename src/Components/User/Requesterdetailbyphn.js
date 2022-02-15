@@ -1,6 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import {Container,Form,FormControl,Button,} from 'react-bootstrap';
+import { useParams } from "react-router-dom";
+import axios from 'axios'
 export default function Requesterdetailbyphn() {
+    const params = useParams(); 
  const [data, setdata] = useState([
  
   ]);
@@ -16,6 +19,22 @@ export default function Requesterdetailbyphn() {
       console.log(data);       
       window.alert(data.message);
     };
+    const updatedata=(data)=>{
+        console.log("inside Updatedata method",params)
+        console.log("params is working",params.DoctorID)
+         console.log(params.DoctorID)
+        axios.put(`https://localhost:44314/api/doctors/${params.DoctorID}`, data)
+        .then(response => {
+          console.log("Status: ", response.status);
+          console.log("Data: ", response.data);
+          window.alert("Doctor data updated")
+          window.location = "/get-doctor"
+        }).catch(error => {
+          console.error('Something went wrong!', error);
+          window.alert("Something Wrong: Doctor data not updated Please enter valid details")
+        });
+     }
+    
     const [search,setsearch]=useState("");
   
  
@@ -28,13 +47,23 @@ export default function Requesterdetailbyphn() {
     };
  
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"})`
+    , position: 'absolute',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    width: '100%',
+    height: '100%',
+    opacity: .8,
+    content: '""',
+    display: 'block',
+    marginTop:0
+    }}>
  
     <Container className="mt-3">
     <Form className="d-flex" onSubmit={handleSubmit}>
     <FormControl
       type="search"
-      placeholder="Search"
+      placeholder="Enter phone Number"
       className="me-2 "
       aria-label="Search"
       size="sm"
@@ -81,7 +110,17 @@ export default function Requesterdetailbyphn() {
                 <td>{item.RequestedBloodtype}</td>
                 <td>{item.RequestedOn}</td>
                 <td>{(item.IsActive)?'yes':'No'}</td>
-        <td><Button size='small' >Update</Button></td>
+        <td><Button size='small' style={{width:'130px'}}
+        onClick={()=>{axios.put(`https://localhost:44314/api/BloodRequest/${item.RequestID}`, {isActive:!item.isActive})
+        .then(response => {
+          console.log("Status: ", response.status);
+          console.log("Data: ", response.data);
+         
+        }).catch(error => {
+          console.error('Something went wrong!', error);
+          
+        })}}
+        >change status</Button></td>
         {/*<td><IconButton onClick={deletedata(item.PatientID)}><DeleteIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
         {/*<td><IconButton  ><EditIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
         

@@ -103,11 +103,25 @@ console.log(data,"Data Entered")
   useEffect(() => {
     fetchPost1();
     fetchPost2();
-    fetchPost3()
+    fetchPost3();
+    fetchPost5();
+
   }, []);
 
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${"https://media.istockphoto.com/photos/male-nurse-taking-blood-sample-of-child-patient-n-clinic-picture-id1306247421?b=1&k=20&m=1306247421&s=170667a&w=0&h=PpxCAI3g_Qtvdb23BqI_oMfZi5b3joN9j2CKgeLyoGI="})`
+    , 
+    
+    position: 'absolute',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    width: '100%',
+     height: '100%',
+    opacity: .8,
+    content: '""',
+    display: 'block',
+    marginTop:0
+    }}>
       <h4>Dashboard</h4>
       <Container>
         <Row>
@@ -151,7 +165,12 @@ console.log(data,"Data Entered")
   <Link to="/blood-donor-data" tag="a" action >Blood Donors data</Link>*/}
       </Container>
       <Container className='my-3 '>
-<img src='https://th.bing.com/th/id/OIP.cxK4Mbn2o_ciUlz-PYmf6gHaD4?w=340&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7' alt="dashboard" width={850} height={350}/>
+       {/*(data5.filter((item)=>{
+        return item.RequestedOn==new Date().toLocaleDateString();
+      }).length>0)?data5.filter((item)=>{
+        return item.RequestedOn==new Date().toLocaleDateString();
+      }).map((item,index)=><p></p>):*/}
+{/*<img src='https://media.istockphoto.com/photos/male-nurse-taking-blood-sample-of-child-patient-n-clinic-picture-id1306247421?b=1&k=20&m=1306247421&s=170667a&w=0&h=PpxCAI3g_Qtvdb23BqI_oMfZi5b3joN9j2CKgeLyoGI=' alt="dashboard" width={900} height={350}/>*/}
       
      </Container>
     </div>

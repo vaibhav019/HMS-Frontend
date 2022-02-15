@@ -47,7 +47,7 @@ export default function GetApointmentPage() {
   ]);
   const [isapproved,setisapproved] = useState(false)
   const deletedata=(appointmentID)=>{
-   axios.delete(`https://localhost:44314/api/appointments/remove/${appointmentID}`).then(
+   axios.delete(`https://localhost:44314/api/appointment/remove/${appointmentID}`).then(
      (response)=>{
        console.log(response);
        window.alert("one appointment rejected");
@@ -62,7 +62,7 @@ export default function GetApointmentPage() {
 
   const fetchPost = async () => {
    const response = await fetch(
-       "https://localhost:44314/api/appointments/getdata"
+       "https://localhost:44314/api/appointment/getdata"
      );
     const data = await response.json();
     console.log(data,"data aa rha hai")
@@ -82,7 +82,7 @@ export default function GetApointmentPage() {
     backgroundPosition: 'center center',
     width: '100%',
      height: '100%',
-    opacity: .8,
+    opacity: 1,
     content: '""',
     display: 'block',
     marginTop:0
@@ -110,11 +110,11 @@ export default function GetApointmentPage() {
                         emailjs.send('service_b8mbf8v',
           'template_3tc327p', 
           {
-            from_name:"Vaibhav Singh",
-            to_name :item.DonorName,
+            from_name:"City hospital",
+            to_name :item.patientName,
             message:"Your request is approved now  You can visit in our center  on your time",
             reply_to:'vaibhavsengarnetid@gmail.com',
-            from_Email:item.Email
+            from_Email:item.email
           }, 
           'user_IQODLOdj6sRnQAnI9S87a').then(res => {
             console.log(res);
@@ -130,11 +130,11 @@ export default function GetApointmentPage() {
                           emailjs.send('service_b8mbf8v',
           'template_3tc327p', 
           {
-            from_name:"Vaibhav Singh",
-            to_name :item.DonorName,
-            message:"Your request is rejected  now  You can not visit in our center ",
+            from_name:"City Hospital",
+            to_name :item.patientName,
+            message:"Your request s rejected  now  You can not visit in our center ",
             reply_to:'vaibhavsengarnetid@gmail.com',
-            from_Email:item.Email
+            from_Email:item.email
           }, 
           'user_IQODLOdj6sRnQAnI9S87a').then(res => {
             console.log(res);
@@ -144,7 +144,7 @@ export default function GetApointmentPage() {
             console.log(err);
             window.alert(err)
         })
-                          deletedata(item.appointment_ID)}}>Reject</Button></td>
+          deletedata(item.appointment_ID)}}>Reject</Button></td>
                        
                     </tr>)}
                   </tbody>

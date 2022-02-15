@@ -9,7 +9,7 @@ export default function CancleAppointmentPage() {
 
   const fetchPost = async (search) => {
     const response = await fetch(
-        `https://localhost:44314/api/appointments/searchappointmentdetails?search=${search}`      
+        `https://localhost:44314/api/appointment/searchappointmentdetails?search=${search}`      
       );                                                  ////https://api.chucknorris.io/jokes/random
      const data = await response.json();
       setdata(data); 
@@ -21,11 +21,11 @@ export default function CancleAppointmentPage() {
 
     const deletedata=(appointment_ID)=>{
  
-      axios.delete(`https://localhost:44314/api/appointments/cancel/${appointment_ID}`).then(
+      axios.delete(`https://localhost:44314/api/appointment/${appointment_ID}`).then(
         (response)=>{
           console.log(response);
           window.alert("Appointment cancelled Successfully....");
-          window.location="/book-appointment"
+          window.location="/book-another-appointment"
           updatedata(appointment_ID);
         },(error)=>{
           console.log("Something went wrong",error);
@@ -60,7 +60,7 @@ export default function CancleAppointmentPage() {
     backgroundPosition: 'center center',
     width: '100%',
      height: '100%',
-    opacity: .8,
+    opacity: 1,
     content: '""',
     display: 'block',
     marginTop:0

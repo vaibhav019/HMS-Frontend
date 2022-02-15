@@ -91,7 +91,7 @@ export default function AdminHome() {
               <Route exact path="/get-vaccination" component={GetVaccinationRequests} />
               <Route exact path="/update-doctor/:DoctorID" component={UpdateDoctor} />
               <Route exact path="/generate-bill" component={GenerateBill} />
-              <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>
+             {/*} <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>*/}
              
             </Switch>
 

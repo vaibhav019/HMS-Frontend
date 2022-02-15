@@ -14,8 +14,8 @@ export default function MainPage() {
     display: 'block',
     marginTop:0
     }}>
-      <Button onClick={()=>{window.location = "/userhome";}}>User</Button>
-      <Button onClick={()=>{window.location = "/adminhome";}}>Admin</Button>
+      <Button onClick={()=>{window.location = "/login";}}>login</Button>
+     
     </div>
   )
 }

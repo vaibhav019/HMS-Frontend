@@ -8,7 +8,7 @@ export default function Donordetailbyphn() {
   ]);
 
   const deletedata = (id) => {
-
+  
     axios.delete(`https://localhost:44314/api/vaccination/${id}`).then(
         (response) => {
             console.log(response);
@@ -50,7 +50,7 @@ export default function Donordetailbyphn() {
     backgroundPosition: 'center center',
     width: '100%',
      height: '100%',
-    opacity: .8,
+    opacity: 1,
     content: '""',
     display: 'block',
     marginTop:0

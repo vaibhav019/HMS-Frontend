@@ -53,7 +53,7 @@ export default function Requesterdetailbyphn() {
     backgroundPosition: 'center center',
     width: '100%',
     height: '100%',
-    opacity: .8,
+    opacity: 1,
     content: '""',
     display: 'block',
     marginTop:0
@@ -111,10 +111,11 @@ export default function Requesterdetailbyphn() {
                 <td>{item.RequestedOn}</td>
                 <td>{(item.IsActive)?'yes':'No'}</td>
         <td><Button size='small' style={{width:'130px'}}
-        onClick={()=>{axios.put(`https://localhost:44314/api/BloodRequest/${item.RequestID}`, {isActive:!item.isActive})
+        onClick={()=>{axios.put(`https://localhost:44314/api/BloodRequest/${item.RequestID}`, {isActive:false})
         .then(response => {
           console.log("Status: ", response.status);
           console.log("Data: ", response.data);
+          //window.location="/search-blood-request"
          
         }).catch(error => {
           console.error('Something went wrong!', error);

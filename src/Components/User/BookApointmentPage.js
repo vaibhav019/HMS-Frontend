@@ -18,7 +18,7 @@ const [Speciality,setSpeciality]=useState('');
 
 const getdoctor= async (Speciality)=>{
   console.log(Speciality,"+======================================")
-   await axios.get(`https://localhost:44314/api/appointments/getdoctors?search=${Speciality}`)
+   await axios.get(`https://localhost:44314/api/appointment/getdoctors?search=${Speciality}`)
   .then((response) => {
     console.log(response,"=========================+++++++++++++")
     console.log(response.data)
@@ -41,7 +41,7 @@ console.log(Name,"Name");
 
 const getdays=  async(Name)=>{
   console.log(Name,"+===============''''''''''=======================")
-   await axios.get(`https://localhost:44314/api/appointments/getdays?search2=${Name}`)
+   await axios.get(`https://localhost:44314/api/appointment/getdays?search2=${Name}`)
   .then((response) => {
     console.log(response,"getdays")
     console.log(response.data,"getdays")
@@ -70,7 +70,7 @@ const getdays=  async(Name)=>{
   })
 }
   const postdata=(data)=>{
-    axios.post("https://localhost:44314/api/appointments/bookappointment",data).then(   //${base_url}\api\Registers
+    axios.post("https://localhost:44314/api/appointment/bookappointment",data).then(   //${base_url}\api\Registers
       (response)=>{
         //success
         console.log(response);

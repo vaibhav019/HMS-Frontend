@@ -28,7 +28,7 @@ useEffect(() => {
     backgroundPosition: 'center center',
     width: '100%',
      height: '100%',
-    opacity: .8,
+    opacity: 1,
     content: '""',
     display: 'block',
     marginTop:0

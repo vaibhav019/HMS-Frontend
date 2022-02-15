@@ -8,7 +8,7 @@ import BookApointmentPage from './BookApointmentPage';
 import BookVaccination from './BookVaccination';
 import CarouselPage from '../Admin/Carousel';
 import Feedback from './Feedback';
-import GetApointmentPage from './GetApointmentPage';
+//import GetApointmentPage from './GetApointmentPage';
 import AddPatient from '../User/AddPatient';
 import Payment from './Payment';
 import Ambulance from './Ambulance'
@@ -16,11 +16,12 @@ import PatientDetailbymail from './PatientDetailbymail'
 //import Register from '../Register';
 //import './userhome.css'
 import VaccinationDetails from '../Admin/VaccinationDetails';
-import GetAppointmentbymail from './GetAppointmentbymail';
+// import GetAppointmentbymail from './GetAppointmentbymail';
 import CancleAppointmentPage from './CancleAppoinment';
 import Donordetailbyphn from './Donordetailbyphn';
 import Requesterdetailbyphn from './Requesterdetailbyphn';
 import CancelVaccination from './CancelVaccination';
+import BookAnotherAppointment from './BookAnotherAppointment'
 export default function UserHome() {
     return (
         <div  className="userhome">
@@ -78,7 +79,7 @@ export default function UserHome() {
                             <Route  exact path="/userhome" component={CarouselPage} />
                             <Route exact path="/add-patient" component={AddPatient}  />
                             <Route exact path="/book-appointment" component={BookApointmentPage} />
-                            <Route exact path="/get-appointmentbyemail" component={GetAppointmentbymail}  />
+                            
                             <Route exact path="/book-vaccination" component={BookVaccination} />
                             <Route exact path="/add-feedback" component={Feedback}  />
                             <Route exact path="/blood-donation" component={BloodDonationPage} />
@@ -94,6 +95,7 @@ export default function UserHome() {
                             <Route exact path="/search-blood-request" component={Requesterdetailbyphn} />
                             <Route exact path="/book-vaccination" component={BookVaccination} />
                             <Route exact path="/cancel-vaccination" component={CancelVaccination} />
+                            <Route exact path="/book-another-appointment" component={BookAnotherAppointment} />
                             </Switch>
  
 

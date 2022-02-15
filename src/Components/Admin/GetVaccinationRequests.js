@@ -78,7 +78,7 @@ export default function GetVaccinationRequests() {
                             <td>{item.date}</td>
                             <td>{item.slotTime}</td>
                             <td><Button size='small' onClick={() => deletedata(item.vaccine_ID)}>Delete</Button></td>
-                            <td>{item.vaccine_ID}</td>
+                           
                         </tr>)}
 
                     </tbody>

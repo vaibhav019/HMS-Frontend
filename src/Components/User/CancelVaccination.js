@@ -1,40 +1,38 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
 import {Container,Form,FormControl,Button,} from 'react-bootstrap';
-export default function CancleAppointmentPage() {
- const [data, setdata] = useState([
-
-  ]);
-  var heading = ['Patient Name', 'Email', 'Speciality','Doctor Name','Day','Date','Time'];
+export default function CancelVaccination() {
+ const [data, setdata] = useState([]);
+  var heading = ['Full Name', 'Phone Number', 'Email', 'Gender', 'Address', 'Age', 'Aadhar No.', 'Vaccine type','Dose','Date','Slot Time'];
 
   const fetchPost = async (search) => {
     const response = await fetch(
-        `https://localhost:44314/api/appointments/searchappointmentdetails?search=${search}`      
+        `https://localhost:44314/api/vaccination/getDetailByAadharNumber?search=${search}`      
       );                                                  ////https://api.chucknorris.io/jokes/random
      const data = await response.json();
-      setdata(data); 
+      setdata(data);
       //toast.success("data loaded successfully");
       console.log(data)
     };
     const [search,setsearch]=useState("");
    
 
-    const deletedata=(appointment_ID)=>{
+    const deletedata=(vaccine_ID)=>{
  
-      axios.delete(`https://localhost:44314/api/appointments/cancel/${appointment_ID}`).then(
+      axios.delete(`https://localhost:44314/api/vaccination/${vaccine_ID}`).then(
         (response)=>{
           console.log(response);
-          window.alert("Appointment cancelled Successfully....");
-          window.location="/book-appointment"
-          updatedata(appointment_ID);
+          window.alert("vaccination Cancelled Successfully....");
+         
+          updatedata(vaccine_ID);
         },(error)=>{
           console.log("Something went wrong",error);
-          //window.alert("Something went wrong");
+          window.alert("Something went wrong");
         }
       )
     }
     const updatedata=(id)=>{
-      setdata(data.filter((c)=> c.PateintID !=id));
+      setdata(data.filter((c)=> c.vaccine_ID !=id));
     };
    
 
@@ -70,7 +68,7 @@ export default function CancleAppointmentPage() {
     <Form className="d-flex" onSubmit={handleSubmit}>
     <FormControl
       type="search"
-      placeholder="Enter Email"
+      placeholder="Enter Aadhar number"
       className="me-2 "
       aria-label="Search"
       size="sm"
@@ -100,30 +98,33 @@ export default function CancleAppointmentPage() {
   */}
 {
  
-  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 1000,marginTop:'20',marginLeft:'10' }}>
-  <thead>
-      <tr>
-          { data.length>0 && heading.map(head => <th>{head}</th>)}
-      </tr>
-  </thead>
-  <tbody >
-      {
-         data && data.map(item =>  <tr key={item.appointment_ID}>
-        <td>{item.patientName}</td>
-        <td>{item.email}</td>
-        <td>{item.Speciality}</td>
-        <td>{item.doctorName}</td>
-        <td>{item.day}</td>
-        <td>{item.date}</td>
-        <td>{item.time}</td>
-        <td><Button size='small' onClick={()=>deletedata(item.appointment_ID)} >Cancle</Button></td>
-        <td><Button onClick={()=> window.location = `/reschedule-appointment/${item.appointment_ID}`} >Reschedule</Button></td>
-        {/*<td><IconButton onClick={deletedata(item.PatientID)}><DeleteIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
-        {/*<td><IconButton  ><EditIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
-       
+    <table  responsive striped bordered hover size="sm" variant="secondary" cellPadding={5} cellSpacing={5} style={{ width: 900, marginTop: '20', marginLeft: '10' }}>
+    <thead>
+        <tr>
+            {data.length>0 && heading.map(head => <th>{head}</th>)}
+        </tr>
+    </thead>
+    <tbody >
+        {data && data.map(item => <tr key={item.vaccine_ID}>
+            <td>{item.fullName}</td>
+            <td>{item.phoneNumber}</td>
+            <td>{item.email}</td>
+            <td>{item.gender}</td>
+            <td>{item.addresss}</td>
+            <td>{item.age}</td>
+            <td>{item.aadharNumber}</td>
+            <td>{item.vaccineType}</td>
+            <td>{item.dose}</td>
+            <td>{item.date}</td>
+            <td>{item.slotTime}</td>
+            <td><Button size='small' onClick={() => {
+                deletedata(item.vaccine_ID)
+                alert("vaccination appointment cancelled")
+            }}>Cancel</Button></td>
+           
         </tr>)}
-     
-  </tbody>
+
+    </tbody>
 </table>
         }      
 </div>

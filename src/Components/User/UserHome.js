@@ -20,6 +20,7 @@ import GetAppointmentbymail from './GetAppointmentbymail';
 import CancleAppointmentPage from './CancleAppoinment';
 import Donordetailbyphn from './Donordetailbyphn';
 import Requesterdetailbyphn from './Requesterdetailbyphn';
+import CancelVaccination from './CancelVaccination';
 export default function UserHome() {
     return (
         <div  className="userhome">
@@ -48,6 +49,9 @@ export default function UserHome() {
                             <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" variant="dark" tag="a" to="/book-vaccination">
                                  Book Vaccination
                             </Link>
+                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" variant="dark" tag="a" to="/cancel-vaccination">
+                            Cancel Vaccination
+                       </Link>
                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark"  variant="dark" tag="a" to="/blood-donation">
                                 Apply for Blood Donation
                             </Link>
@@ -89,6 +93,7 @@ export default function UserHome() {
                             <Route exact path="/search-blood-donor" component={Donordetailbyphn} />
                             <Route exact path="/search-blood-request" component={Requesterdetailbyphn} />
                             <Route exact path="/book-vaccination" component={BookVaccination} />
+                            <Route exact path="/cancel-vaccination" component={CancelVaccination} />
                             </Switch>
  
 

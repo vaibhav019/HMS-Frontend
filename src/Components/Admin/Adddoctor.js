@@ -37,7 +37,7 @@ export default function Adddoctor() {
       }
     );
   };
- 
+  
     const [doctor,setdoctor]=useState({});
     const handleSubmit = (e) => {
       console.log(doctor,"+++++++++++++++++++");
@@ -93,7 +93,7 @@ export default function Adddoctor() {
     <Form.Label>Phone Number:</Form.Label>
     </Col>
     
-    <Col sm={6}><Form.Group className="mb-3" controlId="PhoneNumber">
+    <Col sm={6}><Form.Group className="mb-3" controlId="PhoneNumber" >
    
     <Form.Control type="number" placeholder=" Enter Phone no." id="Phonenumber" name="PhoneNumber" 
     onChange={(e)=>{

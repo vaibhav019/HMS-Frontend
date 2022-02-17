@@ -20,7 +20,7 @@ import VaccinationDetails from './VaccinationDetails';
 import GenerateBill from './Bill/GBill';
 import UpdatePatient from '../User/UpdatePatient';
 import GetVaccinationRequests from './GetVaccinationRequests';
-
+import BloodUnit from './Bloodcamp/BloodUnit'
 export default function AdminHome() {
   return (
     <div >
@@ -91,6 +91,7 @@ export default function AdminHome() {
               <Route exact path="/get-vaccination" component={GetVaccinationRequests} />
               <Route exact path="/update-doctor/:DoctorID" component={UpdateDoctor} />
               <Route exact path="/generate-bill" component={GenerateBill} />
+              <Route exact path="/bloodunit" component={BloodUnit} />
              {/*} <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>*/}
              
             </Switch>

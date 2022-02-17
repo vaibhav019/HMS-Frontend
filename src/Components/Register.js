@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import base_url from '../api/api'
 import Paper from '@mui/material/Paper';
+
 //import { ToastContainer, toast } from 'react-toastify';
 //import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import {Redirect} from 'react-router-dom'
@@ -201,11 +202,12 @@ const[emailerror,setemailerror]=useState('')
                   name="Email"
                   autoComplete="Email"
                   onChange={(e)=>{
-                    setregister({...register,Email:e.target.value})
                     let reg=new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(e.target.value) 
-                if(!reg){
-                  setemailerror("Please Enter Valid Email")
-                }
+                    if(!reg){
+                      setemailerror("Please Enter Valid Email")
+                    }
+                    setregister({...register,Email:e.target.value})
+                 
                   }}
                   required
               error={Boolean(emailerror)}
@@ -235,7 +237,7 @@ const[emailerror,setemailerror]=useState('')
                 label="Phone No."
                 type="number"
                 name="PhoneNumber"
-                autoComplete="Phone no"
+               
                 inputProps={{maxLength:10}}
                 onChange={(e)=>{
                   setregister({...register,PhoneNumber:e.target.value})

@@ -134,7 +134,7 @@ console.log(data,"Data Entered")
                 <Card.Text>
                   {bloodunit}
                 </Card.Text>
-               <Card.Link href="#">More Details</Card.Link>
+               <Card.Link href="/bloodunit">More Details</Card.Link>
 
               </Card.Body>
             </Card> </Col>

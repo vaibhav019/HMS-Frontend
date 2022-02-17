@@ -84,7 +84,8 @@ return (
   <Container>
   <h4>All Doctors</h4>
   </Container>
-  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} width='850'>
+  <Container color="secondary">
+  <table bordered size="sm" variant="secondary"  cellPadding={10} cellSpacing={10} width='850'>
                 <thead>
                     <tr>
                         {heading.map(head => <th>{head}</th>)}
@@ -103,7 +104,7 @@ return (
                   </tr>)}
                 </tbody>
             </table>
-    
+            </Container>
   </div>
 );
 

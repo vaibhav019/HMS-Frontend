@@ -44,13 +44,19 @@ function App() {
     <Header role={localStorage.getItem('role')}/>
  
     <Switch>
-    <Route exact path="/register" component={Register}/>
-    <Route exact path="/login" component={Login}/>
-    <Route exact path="/userhome" component={UserHome}/>
-    <Route exact route="/adminhome" component={AdminHome}/>
-    <Route exact path="/contactus" component={Contactus}/>
-    <Route exact path="/aboutus" component={Aboutus}/>
-   <Route exact path="/home" component={MainPage}/>
+    <Route path="/register" component={Register}/>
+    <Route  path="/login" component={Login}/>
+   {/*} <Route path="/aboutus" component={Aboutus}/>
+    <Route path="/contactus" component={Contactus}/>
+  <Route path="/" component={MainPage}/>*/}
+    <Route  path="/userhome" component={UserHome}/>
+    <Route  route="/adminhome" component={AdminHome}/>
+
+   {/*
+  <Route  path="/adminhome" component={AdminHome}/>
+  <Route  route="/userhome" component={UserHome}/>
+   */}
+   
     </Switch>
     
     </BrowserRouter>

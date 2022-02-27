@@ -28,16 +28,33 @@ export default function Requesterdetailbyphn() {
           console.log("Status: ", response.status);
           console.log("Data: ", response.data);
           window.alert("Doctor data updated")
-          window.location = "/get-doctor"
+          window.location = "/adminhome/get-doctor"
         }).catch(error => {
           console.error('Something went wrong!', error);
           window.alert("Something Wrong: Doctor data not updated Please enter valid details")
         });
      }
     
+     const approve=(RequestID,isactive)=>{
+      axios.patch(`https://localhost:44314/api/BloodRequest/${RequestID}`,{isapproved:true,IsActive:isactive})
+     .then(response => {
+       console.log("Status: ", response.status);
+       console.log("Data: ", response.data);
+       //alert(response)
+       //alert()
+       setdata(data.filter((c)=> RequestID !==c.RequestID));
+      // alert(data)
+      
+     }).catch(error => {
+       console.error('Something went wrong!', error);
+       
+     })
+    }
     const [search,setsearch]=useState("");
   
- 
+    // useEffect(() => {
+    //   fetchPost();
+    // }, []);
     const handleSubmit = (e) => {
      
       console.log(search)
@@ -100,7 +117,7 @@ export default function Requesterdetailbyphn() {
       </tr>
   </thead>
   <tbody>
-              {data && data.map(item => <tr key={item.RequestID}>
+              {data.length>0 && data.map(item => <tr key={item.RequestID}>
                 <td>{item.RequestorName}</td>
                 <td>{item.RequestorAge}</td>
                 <td>{item.RequestorGender}</td>
@@ -111,10 +128,11 @@ export default function Requesterdetailbyphn() {
                 <td>{item.RequestedOn}</td>
                 <td>{(item.IsActive)?'yes':'No'}</td>
         <td><Button size='small' style={{width:'130px'}}
-        onClick={()=>{axios.put(`https://localhost:44314/api/BloodRequest/${item.RequestID}`, {isActive:false})
+        onClick={()=>{axios.patch(`https://localhost:44314/api/BloodRequest/${item.RequestID}`, {IsActive:false,isapproved:item.isapproved})
         .then(response => {
           console.log("Status: ", response.status);
           console.log("Data: ", response.data);
+          setdata(data.filter((c)=> item.RequestID !==c.RequestID));
           //window.location="/search-blood-request"
          
         }).catch(error => {

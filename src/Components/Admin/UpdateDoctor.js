@@ -27,6 +27,8 @@ console.log("working")
 const data = await response.json();
 console.log(data,"Data Entered")
 setdata(data);
+setdoctor(data)
+
 //toast.success("data loaded successfully");
 console.log(data)
 
@@ -68,7 +70,7 @@ fetchPost();
       console.log("Status: ", response.status);
       console.log("Data: ", response.data);
       window.alert("Doctor data updated")
-      window.location = "/get-doctor"
+      window.location = "/adminhome/get-doctor"
     }).catch(error => {
       console.error('Something went wrong!', error);
       window.alert("Something Wrong: Doctor data not updated Please enter valid details")
@@ -204,7 +206,7 @@ fetchPost();
     </Col>
     <Col sm={6}> <Form.Group className="mb-3" controlId="Speciality" name="Speciality">
     
-    <Form.Select aria-label="Default select example"  defaultValue={data.Speciality} onChange={(e)=>{
+    <Form.Select aria-label="Default select example" value={data.Speciality} defaultValue={data.Speciality} onChange={(e)=>{
       setdoctor({...doctor,Speciality:e.target.value})
     }}>
     <option>Select Speciality:</option>

@@ -54,27 +54,23 @@ function save(){
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     width: '100%',
-     height: '100%',
+    height: '100%',
     opacity: .8,
     content: '""',
     display: 'block',
     marginTop:0
     }}>
-    <Container fluid className='mb-3 p-3'><h2 >Bill Generation </h2></Container>
-   
-
+    <Container fluid className='mb-3 p-3'><h2 >Bill Generation </h2></Container>   
     <Container>
     <Form onSubmit={handleSubmit}>
     <Row>
-   
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="Name">
       <b>Patient Name</b>
       <Form.Control type="text" placeholder=" Enter Name" id="Name" value={Name}
           onChange={e => setName(e.target.value)}/>
     </Form.Group>
-    </Col>
- 
+    </Col> 
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="Email">
       <b>Patient Email</b>

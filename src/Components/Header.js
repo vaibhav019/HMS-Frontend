@@ -12,7 +12,7 @@ import {
 export default function Header({role}) {
   return (
     
-    <div>
+    <div className="sticky-top">
     <Navbar bg="primary"  className="text-light" expand="lg">
   <Container  className="text-light">
     <Navbar.Brand href="/home"  className="text-light">City Hospital</Navbar.Brand>

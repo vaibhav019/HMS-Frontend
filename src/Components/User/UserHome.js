@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, ListGroup } from 'react-bootstrap'
-import {  Route, Switch, Link, BrowserRouter } from "react-router-dom";
+import {  Route, Switch, Link, BrowserRouter,NavLink } from "react-router-dom";
 import UpdatePatient from './UpdatePatient'
 import BloodDonationPage from './BloodDonationPage';
 import BloodRequestPage from './BloodRequestPage';
@@ -24,48 +24,50 @@ import CancelVaccination from './CancelVaccination';
 import BookAnotherAppointment from './BookAnotherAppointment'
 export default function UserHome() {
     return (
+        <BrowserRouter>
         <div  className="userhome">
-            <BrowserRouter>
+        
        
                 <Row >
                     <Col sm={2}>
                         <ListGroup >
 
                            
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/add-patient">
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/userhome/add-patient">
                                 Add Patient Record
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/getpatientbymail">
+                            </NavLink>
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/userhome/getpatientbymail">
                                  Patient Details
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/book-appointment">
+                            </NavLink>
+                         
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/userhome/book-appointment">
                                 Book Online Appoinment
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/cancle-appointment">
+                            </NavLink>
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/userhome/cancle-appointment">
                                Cancel Appointment 
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/payment">
+                            </NavLink>
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/userhome/payment">
                                 Payment
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" variant="dark" tag="a" to="/book-vaccination">
+                            </NavLink>
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" variant="dark" tag="a" to="/userhome/book-vaccination">
                                  Book Vaccination
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" variant="dark" tag="a" to="/cancel-vaccination">
+                            </NavLink>
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" variant="dark" tag="a" to="/userhome/cancel-vaccination">
                             Cancel Vaccination
-                       </Link>
-                           <Link className="list-group-item list-group-item-action list-group-item-primary text-dark"  variant="dark" tag="a" to="/blood-donation">
+                       </NavLink>
+                           <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark"  variant="dark" tag="a" to="/userhome/blood-donation">
                                 Apply for Blood Donation
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark"  variant="dark" tag="a" to="/blood-request">
+                            </NavLink>
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark"  variant="dark" tag="a" to="/userhome/blood-request">
                                 Request for Blood
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/ambulance-user">
+                            </NavLink>
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/userhome/ambulance-user">
                                 Ambulance
-                            </Link>
-                            <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/add-feedback">
+                            </NavLink>
+                            <NavLink className="list-group-item list-group-item-action list-group-item-primary text-dark" action variant="dark" tag="a" to="/userhome/add-feedback">
                                 Give  Feedback
-                            </Link>
-
+                            </NavLink>
+    
                             <Link className="list-group-item list-group-item-action list-group-item-primary text-dark" variant="dark" to="">
                                 <div><br /></div>
                             </Link>
@@ -77,25 +79,26 @@ export default function UserHome() {
                         <Switch>
                     
                             <Route  exact path="/userhome" component={CarouselPage} />
-                            <Route exact path="/add-patient" component={AddPatient}  />
-                            <Route exact path="/book-appointment" component={BookApointmentPage} />
-                            
-                            <Route exact path="/book-vaccination" component={BookVaccination} />
-                            <Route exact path="/add-feedback" component={Feedback}  />
-                            <Route exact path="/blood-donation" component={BloodDonationPage} />
-                            <Route exact path="/ambulance-user" component={Ambulance}  />
-                            <Route exact path="/payment" component={Payment} />
-                            <Route exact path="/getpatientbymail" component={PatientDetailbymail} />
-                            <Route exact path="/add-feedback" component={Feedback} />
-                            <Route exact path="/blood-request" component={BloodRequestPage} />
-                            <Route exact path="/vaccination" component={VaccinationDetails} />
-                            <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>
-                            <Route exact path="/cancle-appointment" component={CancleAppointmentPage}  />
-                            <Route exact path="/search-blood-donor" component={Donordetailbyphn} />
-                            <Route exact path="/search-blood-request" component={Requesterdetailbyphn} />
-                            <Route exact path="/book-vaccination" component={BookVaccination} />
-                            <Route exact path="/cancel-vaccination" component={CancelVaccination} />
-                            <Route exact path="/book-another-appointment" component={BookAnotherAppointment} />
+                            <Route exact path="/userhome/add-patient" component={AddPatient}  />
+                            <Route exact path="/userhome/book-appointment" component={BookApointmentPage} />
+                          
+                            <Route exact path="/userhome/book-vaccination" component={BookVaccination} />
+                            <Route exact path="/userhome/add-feedback" component={Feedback}  />
+                            <Route exact path="/userhome/blood-donation" component={BloodDonationPage} />
+                            <Route exact path="/userhome/ambulance-user" component={Ambulance}  />
+                            <Route exact path="/userhome/payment" component={Payment} />
+                            <Route exact path="/userhome/getpatientbymail" component={PatientDetailbymail} />
+                            <Route exact path="/userhome/add-feedback" component={Feedback} />
+                            <Route exact path="/userhome/blood-request" component={BloodRequestPage} />
+                            <Route exact path="/userhome/vaccination" component={VaccinationDetails} />
+                            <Route exact path="/userhome/update-patient/:PateintID" component={UpdatePatient}/>
+                            <Route exact path="/userhome/cancle-appointment" component={CancleAppointmentPage}  />
+                            <Route exact path="/userhome/search-blood-donor" component={Donordetailbyphn} />
+                            <Route exact path="/userhome/search-blood-request" component={Requesterdetailbyphn} />
+                            <Route exact path="/userhome/book-vaccination" component={BookVaccination} />
+                            <Route exact path="/userhome/cancel-vaccination" component={CancelVaccination} />
+                            <Route exact path="/userhome/book-another-appointment" component={BookAnotherAppointment} />
+    
                             </Switch>
  
 
@@ -108,8 +111,9 @@ export default function UserHome() {
 
 
 
-                </BrowserRouter>
+              
 
         </div>
+        </BrowserRouter>
     )
 }

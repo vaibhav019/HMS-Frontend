@@ -14,8 +14,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-
+//import { ToastContainer, toast } from 'react-toastify';
+import validator from 'validator'
 
 const styles = {
   paperContainer: {
@@ -25,7 +25,7 @@ const styles = {
       backgroundPosition: 'center center',
       width: '100%',
        height: '100%',
-      opacity: 0.6,
+      opacity: 1,
       content: '""',
       display: 'block',
       Width:1000,
@@ -70,6 +70,26 @@ export default function Login(props) {
     );
   };
   const[emailerror,setemailerror]=useState('')
+  const [passworderror,setpassworderror]=useState('');
+  const validateEmail = (e) => {
+    var email = e.target.value
+  
+    if (validator.isEmail(email)) {
+      setemailerror('')
+    } else {
+      setemailerror('Enter valid Email!')
+    }
+  }
+  const validatePassword = (e) => {
+    var password=e.target.value
+    if (password.length <=8) {
+      setpassworderror('')
+    } else {
+      setpassworderror('Password should not grater the 8')
+    }
+  
+   
+   }
     const [login,setlogin]=useState({});
     const handleSubmit = (e) => {
       console.log(login,"+++++++++++++++++++");
@@ -127,11 +147,9 @@ export default function Login(props) {
               inputProps={{maxLength:100}}
               autoFocus
               onChange={(e)=>{
-                setlogin({...login,Email:e.target.value})
-                let reg=new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(e.target.value) 
-                if(!reg){
-                  setemailerror("Please Enter Valid Email")
-                }
+                validateEmail(e)
+                 setlogin({...login,Email:e.target.value})
+                
               }}
               required
               error={Boolean(emailerror)}
@@ -141,16 +159,22 @@ export default function Login(props) {
               margin="normal"
               required
               fullWidth
-              inputProps={{maxLength:8}}
               name="Password"
               label="Password"
               type="password"
               id="Password"
               autoComplete="current-password"
               onChange={(e)=>{
+                validatePassword(e)
                 setlogin({...login,Password:e.target.value})
               }}
+              error={Boolean(passworderror)}
+              helperText={passworderror}
             />
+            <span style={{
+              fontWeight: 'bold',
+              color: 'black',
+            }}>* Special Characters are not allowed...</span>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

@@ -36,6 +36,7 @@ const response = await fetch(
   setdata(data);
   //toast.success("data loaded successfully");
   console.log(data)
+  console.table(data)
 };
 
 useEffect(() => {
@@ -47,17 +48,17 @@ return (
   backgroundSize: 'cover',
   backgroundPosition: 'center center',
   width: '100%',
-   height: '100%',
+  height: '100%',
   opacity: 1,
   content: '""',
   display: 'block',
   marginTop:0
   }}>
-  <Container fluid='sm'color='secondary'style={{width:'1000px'}}>
+  {/*<Container fluid='sm'color='secondary'style={{width:'1000px',marginLeft:'1'}}>*/}
   <Container>
   <h4>All Patients</h4>
   </Container>
-  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 900,marginTop:'20',marginLeft:'10' }}>
+  <table bordered size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: 900,marginTop:'20' }}>
                 <thead>
                     <tr>
                         {heading.map(head => <th>{head}</th>)}
@@ -81,7 +82,7 @@ return (
                    
                 </tbody>
             </table>
-            </Container>
+            {/*</Container>*/}
   </div>
 );
 }

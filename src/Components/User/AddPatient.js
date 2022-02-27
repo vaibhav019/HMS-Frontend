@@ -2,7 +2,7 @@ import React ,{useState,useEffect,Fragment}  from 'react'
 import { Container, Form,Row,Col,Button } from 'react-bootstrap';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-
+import validator from 'validator'
 
 
 export default function AddPatient() {
@@ -27,11 +27,33 @@ export default function AddPatient() {
         window.location = "/userhome";
       },(error)=>{
         //error
+        alert(error)
         console.log(error);
         console.log("failed +++++++++++++++++++")
       }
     );
   };
+  const[emailerror,setemailerror]=useState('')
+  const [phoneerror, setphoneerror] = useState('');
+  const validateEmail = (e) => {
+    var email = e.target.value
+  
+    if (validator.isEmail(email)) {
+      setemailerror('')
+    } else {
+      setemailerror('Enter valid Email!')
+    }
+  }
+  const validatePhoneNumber = (e) => {
+    var phone = e.target.value
+    if (validator.isMobilePhone(phone) && phone.length == 10) {
+      setphoneerror('')
+    } else {
+      setphoneerror('Enter valid Phone Number ')
+    }
+
+
+  }
     const [patient,setpatient]=useState({});
     const handleSubmit = (e) => {
       console.log(patient,"+++++++++++++++++++");
@@ -71,7 +93,7 @@ export default function AddPatient() {
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="FirstName">
      
-      <Form.Control type="text" placeholder=" Enter First Name" id="FirstName" name="FirstName" onChange={(e)=>{
+      <Form.Control type="text" required placeholder=" Enter First Name" id="FirstName" name="FirstName" onChange={(e)=>{
         setpatient({...patient,FirstName:e.target.value})
       }}/>
     </Form.Group>
@@ -80,7 +102,7 @@ export default function AddPatient() {
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="LastName">
    
-      <Form.Control type="text" placeholder="Enter Last Name" id="LastName" name="LastName"
+      <Form.Control type="text" required placeholder="Enter Last Name" id="LastName" name="LastName"
       onChange={(e)=>{
         setpatient({...patient,LastName:e.target.value})
       }}/>
@@ -94,19 +116,30 @@ export default function AddPatient() {
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="Email">
    
-      <Form.Control type="email" placeholder="Enter Email" id="Email" name="Email" 
+      <Form.Control type="email" required placeholder="Enter Email" id="Email" name="Email" 
       onChange={(e)=>{
+        validateEmail(e)
         setpatient({...patient,Email:e.target.value})
       }}/>
+      <span style={{
+        fontWeight: 'bold',
+        color: 'red',
+      }}>{emailerror}</span>
     </Form.Group>
+    
     </Col>
     
     <Col sm={4}><Form.Group className="mb-3" controlId="ContactNumber">
    
-    <Form.Control type="number" placeholder=" Enter Contact no." id="ContactNumber" name="ContactNumber" 
+    <Form.Control type="number" required placeholder=" Enter Contact no." id="ContactNumber" name="ContactNumber" 
     onChange={(e)=>{
+      validatePhoneNumber(e)
       setpatient({...patient,ContactNumber:e.target.value})
     }}/>
+    <span style={{
+      fontWeight: 'bold',
+      color: 'red',
+    }}>{phoneerror}</span>
   </Form.Group> </Col>
   <Col sm={4}></Col>
     </Row>
@@ -115,7 +148,7 @@ export default function AddPatient() {
     <Col sm={4}>
     <Form.Group className="mb-3" controlId="Age">
      
-      <Form.Control type="number" placeholder=" Enter Age" id="Age" name="Age" 
+      <Form.Control type="number" required placeholder=" Enter Age" id="Age" name="Age" 
       onChange={(e)=>{
         setpatient({...patient,Age:e.target.value})
       }}/>
@@ -130,7 +163,7 @@ export default function AddPatient() {
         setpatient({...patient,gender:e.target.value})
       }}/>
     */}
-    <Form.Select aria-label="Select Gender" name="gender"  onChange={(e)=>{
+    <Form.Select aria-label="Select Gender" required name="gender"  onChange={(e)=>{
       setpatient({...patient,gender:e.target.value})
     }} >
     <option>Select gender</option>
@@ -148,7 +181,7 @@ export default function AddPatient() {
   
     <Form.Group className="mb-3" controlId="Address">
     
-    <Form.Control as="textarea" rows={2} id="Address"  placeholder="Enter Address" name="Address" 
+    <Form.Control as="textarea" required rows={2} id="Address"  placeholder="Enter Address" name="Address" 
     onChange={(e)=>{
       setpatient({...patient,Address:e.target.value})
     }}/>
@@ -160,7 +193,7 @@ export default function AddPatient() {
     <Col sm={8}>
     <Form.Group className="mb-3" controlId="Symptoms">
     
-    <Form.Control as="textarea" rows={2} id="Symptoms"  placeholder="Enter Symptoms" name="Symptoms" onChange={(e)=>{
+    <Form.Control as="textarea" required rows={2} id="Symptoms"  placeholder="Enter Symptoms" name="Symptoms" onChange={(e)=>{
       setpatient({...patient,Symptoms:e.target.value})
     }}/>
   </Form.Group>
@@ -171,7 +204,7 @@ export default function AddPatient() {
     <Col sm={8}>
     <Form.Group className="mb-3" controlId="Ward">
     
-    <Form.Select aria-label="Select Ward" name="Ward"  onChange={(e)=>{
+    <Form.Select aria-label="Select Ward" required name="Ward"  onChange={(e)=>{
       setpatient({...patient,Ward:e.target.value})
     }} >
     <option>Select Ward</option>

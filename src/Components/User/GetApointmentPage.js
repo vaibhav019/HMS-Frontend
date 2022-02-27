@@ -6,46 +6,46 @@ export default function GetApointmentPage() {
   var heading = ['Name', 'email','Specialty','DoctorName','Day','date','time'];
 
   const [data, setdata] = useState([
-    {
-      "id":1,
-      "name":"Leanne Graham",
-      "username":"Bret",
-      "email":"Sincere@april.biz",
-      "address":{
-         "street":"Kulas Light",
-         "suite":"Apt. 556",
-         "city":"Gwenborough",
-         "zipcode":"92998-3874",
-         "geo":{
-            "lat":"-37.3159",
-            "lng":"81.1496"
-         }
-      },
-      "phone":"1-770-736-8031 x56442",
-      "website":"hildegard.org",
-      "speciality":"neuro"
-   },
-   {
-      "id":2,
-      "name":"Ervin Howell",
-      "username":"Antonette",
-      "email":"Shanna@melissa.tv",
-      "address":{
-         "street":"Victor Plains",
-         "suite":"Suite 879",
-         "city":"Wisokyburgh",
-         "zipcode":"90566-7771",
-         "geo":{
-            "lat":"-43.9509",
-            "lng":"-34.4618"
-         }
-      },
-      "phone":"010-692-6593 x09125",
-      "website":"anastasia.net",
-      "speciality":"surgon"
-   }
+  //   {
+  //     "id":1,
+  //     "name":"Leanne Graham",
+  //     "username":"Bret",
+  //     "email":"Sincere@april.biz",
+  //     "address":{
+  //        "street":"Kulas Light",
+  //        "suite":"Apt. 556",
+  //        "city":"Gwenborough",
+  //        "zipcode":"92998-3874",
+  //        "geo":{
+  //           "lat":"-37.3159",
+  //           "lng":"81.1496"
+  //        }
+  //     },
+  //     "phone":"1-770-736-8031 x56442",
+  //     "website":"hildegard.org",
+  //     "speciality":"neuro"
+  //  },
+  //  {
+  //     "id":2,
+  //     "name":"Ervin Howell",
+  //     "username":"Antonette",
+  //     "email":"Shanna@melissa.tv",
+  //     "address":{
+  //        "street":"Victor Plains",
+  //        "suite":"Suite 879",
+  //        "city":"Wisokyburgh",
+  //        "zipcode":"90566-7771",
+  //        "geo":{
+  //           "lat":"-43.9509",
+  //           "lng":"-34.4618"
+  //        }
+  //     },
+  //     "phone":"010-692-6593 x09125",
+  //     "website":"anastasia.net",
+  //     "speciality":"surgon"
+  //  }
   ]);
-  const [isapproved,setisapproved] = useState(false)
+  //const [isapproved,setisapproved] = useState(false)
   const deletedata=(appointmentID)=>{
    axios.delete(`https://localhost:44314/api/appointment/remove/${appointmentID}`).then(
      (response)=>{
@@ -58,7 +58,21 @@ export default function GetApointmentPage() {
      }
    );
  }
- 
+ const approve=(appointment_ID)=>{
+   axios.patch(`https://localhost:44314/api/appointment/${appointment_ID}`,{isapproved:true})
+  .then(response => {
+    console.log("Status: ", response.status);
+    console.log("Data: ", response.data);
+    //alert(response)
+    //alert()
+    setdata(data.filter((c)=> appointment_ID !==c.appointmentID));
+   // alert(data)
+   
+  }).catch(error => {
+    console.error('Something went wrong!', error);
+    
+  })
+ }
 
   const fetchPost = async () => {
    const response = await fetch(
@@ -73,20 +87,11 @@ export default function GetApointmentPage() {
   useEffect(() => {
      console.log(data,"outside fetch data update ho rha hai")
     fetchPost()
-  }, []);
+    
+  }, [data]);
   return (
      
-    <div className="App" style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"})`
-    , position: 'absolute',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
-    width: '100%',
-     height: '100%',
-    opacity: 1,
-    content: '""',
-    display: 'block',
-    marginTop:0
-    }}>
+    <div className="App" >
     <Container>
     <h4>All Appoitnment</h4>
     </Container>
@@ -105,7 +110,8 @@ export default function GetApointmentPage() {
                         <td>{item.day}</td>
                         <td>{item.date}</td>
                         <td>{item.time}</td> 
-                        <td><Button onClick={()=>{setisapproved(true)
+                        <td><Button onClick={ ()=>{
+                         approve(item.appointment_ID)
                         alert("appointment is approved.")
                         emailjs.send('service_b8mbf8v',
           'template_3tc327p', 
@@ -125,7 +131,7 @@ export default function GetApointmentPage() {
             window.alert(err)
         })
 
-                        }}>Accept</Button></td>
+                        }}>{item.isapproved?'Accepted':'Accept'}</Button></td>
                         <td><Button onClick={()=>{
                           emailjs.send('service_b8mbf8v',
           'template_3tc327p', 
@@ -144,8 +150,8 @@ export default function GetApointmentPage() {
             console.log(err);
             window.alert(err)
         })
-          deletedata(item.appointment_ID)}}>Reject</Button></td>
-                       
+          deletedata(item.appointment_ID)}}>{item.isapproved?'Cancle':'Reject'}</Button></td>
+                      
                     </tr>)}
                   </tbody>
               </table>

@@ -17,7 +17,7 @@ export default function BloodDonationPage() {
       },(error)=>{
         //error
         console.log(error);
-        window.alert("Blood Donation Request did not sent something wrong...")
+        window.alert("Blood Donation Request did not sent Please Enter Valid details...")
         console.log("failed +++++++++++++++++++")
       }
     );
@@ -51,7 +51,7 @@ export default function BloodDonationPage() {
     }}>
 
     <Container fluid className='mb-3 p-3'><h4>Application Form for Blood Donation</h4>
-    <Link to="/search-blood-donor" tag="a" action >Show Previous History</Link>
+    <Link to="/userhome/search-blood-donor" tag="a" action >Show Previous History</Link>
     </Container>
    
     <Container fluid className="ml-3" >

@@ -13,7 +13,8 @@ export default function Payment() {
     display: 'block',
     marginTop:0
     }}>
-      <h1>Payment</h1>
+      <h2>Payment</h2>
+      <h5>Work in Progress...</h5>
     </div>
   )
 }

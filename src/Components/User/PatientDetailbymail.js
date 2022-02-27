@@ -104,7 +104,7 @@ export default function PatientDetailbymail() {
         <td>{item.Age}</td>
         <td>{item.Symptoms}</td>
         <td>{item.Ward}</td>
-        <td><Button size='small'onClick={()=> window.location=`/update-patient/${item.PateintID}`}>Update</Button></td>
+        <td><Button size='small'onClick={()=> window.location=`/userhome/update-patient/${item.PateintID}`}>Update</Button></td>
         <td><Button onClick={()=>deletedata(item.PateintID)} >Delete</Button></td>
       
         </tr>)}

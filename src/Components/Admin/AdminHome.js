@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import CarouselPage from './Carousel'
-import { BrowserRouter as Router, Route, Switch,Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch,Link,NavLink } from "react-router-dom";
 //import AddPatient from '../User/AddPatient';
 import ViewDoctors from '../User/ViewDoctors'
 import Adddoctor from './Adddoctor';
@@ -23,8 +23,9 @@ import GetVaccinationRequests from './GetVaccinationRequests';
 import BloodUnit from './Bloodcamp/BloodUnit'
 export default function AdminHome() {
   return (
+    <Router>
     <div >
-      <Router>
+ 
 
         <Row>
           <Col sm={2}>
@@ -34,36 +35,37 @@ export default function AdminHome() {
               {/*<Link className="list-group-item list-group-item-action bg-muted" variant="primary" action tag="a" to="/add-patient">
                 Add Patient Records
   </Link>*/}
-              <Link    className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"   tag="a" to="/get-patients">
+              <NavLink    className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"   tag="a" to="/adminhome/get-patients">
                Patient Records
-              </Link>
-              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/add-doctor">
+              </NavLink>
+              <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/adminhome/add-doctor">
                 Add Doctor Details
-              </Link>
-              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark" tag="a" to="/get-doctor">
+              </NavLink>
+              
+              <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark" tag="a" to="/adminhome/get-doctor">
                Doctor Details
-            </Link>
-              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/bloodcamp">
+            </NavLink>
+              <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/adminhome/bloodcamp">
                 Blood Camp
-              </Link>
-              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/add-ambulance">
+              </NavLink>
+              <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/adminhome/add-ambulance">
                 Add Ambulance
-              </Link>
-              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/get-ambulance">
+              </NavLink>
+              <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/adminhome/get-ambulance">
                 View Ambulance
-              </Link>
-              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/get-feedback">
+              </NavLink>
+              <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/adminhome/get-feedback">
                 feedback recieved
-              </Link>
-              <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/get-appointment">
+              </NavLink>
+              <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/adminhome/get-appointment">
              All Appoitments
-            </Link>
-            <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/get-vaccination">
+            </NavLink>
+            <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  tag="a" to="/adminhome/get-vaccination">
              All Vacccination Booking Details
-            </Link>
-            <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"   tag="a" to="/generate-bill">
+            </NavLink>
+            <NavLink className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"   tag="a" to="/adminhome/generate-bill">
            Generate Bill
-           </Link>
+           </NavLink>
 
               <Link className="list-group-item list-group-item-action  list-group-item-primary text-dark text-dark"  to="">
                 <div><br /><br /><br /><br /><br /></div>
@@ -76,24 +78,25 @@ export default function AdminHome() {
             <Switch>
               <Route exact path="/adminhome" component={CarouselPage} />
   {/*} <Route exact path="/add-patient" component={AddPatient} */}
-              <Route exact path="/get-patients" component={ViewPatients}/>
+              <Route exact path="/adminhome/get-patients" component={ViewPatients}/>
              
-              <Route exact path="/add-doctor" component={Adddoctor} />
-              <Route exact path="/bloodcamp" component={BloodDashboard} />
-              <Route exact path="/get-feedback" component={GetFeedback} />
+              <Route exact path="/adminhome/add-doctor" component={Adddoctor} />
               
-              <Route exact path="/get-doctor" component={ViewDoctors} />
-              <Route exact path="/add-ambulance" component={AddAmbulance} />
-              <Route exact path="/get-ambulance" component={Ambulance1} />
-              <Route exact path="/blood-request-data" component={BloodRequesterDetails} />
-              <Route exact path="/blood-donor-data" component={BloodDonorDetails} />
-              <Route exact path="/get-appointment" component={GetApointmentPage} />
-              <Route exact path="/get-vaccination" component={GetVaccinationRequests} />
-              <Route exact path="/update-doctor/:DoctorID" component={UpdateDoctor} />
-              <Route exact path="/generate-bill" component={GenerateBill} />
-              <Route exact path="/bloodunit" component={BloodUnit} />
-             {/*} <Route exact path="/update-patient/:PateintID" component={UpdatePatient}/>*/}
-             
+              <Route exact path="/adminhome/bloodcamp" component={BloodDashboard} />
+              <Route exact path="/adminhome/get-feedback" component={GetFeedback} />
+              
+              <Route exact path="/adminhome/get-doctor" component={ViewDoctors} />
+              <Route exact path="/adminhome/add-ambulance" component={AddAmbulance} />
+              <Route exact path="/adminhome/get-ambulance" component={Ambulance1} />
+              <Route exact path="/adminhome/blood-request-data" component={BloodRequesterDetails} />
+              <Route exact path="/adminhome/blood-donor-data" component={BloodDonorDetails} />
+              <Route exact path="/adminhome/get-appointment" component={GetApointmentPage} />
+              <Route exact path="/adminhome/get-vaccination" component={GetVaccinationRequests} />
+              <Route exact path="/adminhome/update-doctor/:DoctorID" component={UpdateDoctor} />
+              <Route exact path="/adminhome/generate-bill" component={GenerateBill} />
+              <Route exact path="/adminhome/bloodunit" component={BloodUnit} />
+             <Route exact path="/adminhome/update-patient/:PateintID" component={UpdatePatient}/>
+
             </Switch>
 
 
@@ -101,7 +104,8 @@ export default function AdminHome() {
           </Col>
         </Row>
 
-      </Router>
+     
     </div>
+    </Router>
   )
 }

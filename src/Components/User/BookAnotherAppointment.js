@@ -12,7 +12,7 @@ export default function BookApointmentPage() {
 
                     <Col sm={4}></Col>
                     <Row>
-                        <Col>  <Button onClick={() => window.location = "/book-appoinment"}>Book Another Appointment</Button>{'  '}<Button onClick={() => window.location = "/userhome"}>Not Now</Button>{' '}</Col>
+                        <Col>  <Button onClick={() => window.location = "/userhome/book-appoinment"}>Book Another Appointment</Button>{'  '}<Button onClick={() => window.location = "/userhome"}>Not Now</Button>{' '}</Col>
                         <Col></Col>
 
                     </Row>

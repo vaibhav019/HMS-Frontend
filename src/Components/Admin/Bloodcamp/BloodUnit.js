@@ -62,7 +62,7 @@ export default function BloodUnit() {
             </tbody>
           </Table>
        {/*} </Container>*/}
-       <Button variant="warning"> <Link to="/bloodcamp" tag="a" action className="text-light">Back</Link></Button>
+       <Button variant="warning"> <Link to="/adminhome/bloodcamp" tag="a" action className="text-light">Back</Link></Button>
       </div>
       
  

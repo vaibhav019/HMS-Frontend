@@ -29,7 +29,7 @@ export default function BloodDonorDetails() {
     };
     useEffect(() => {
       fetchPost();
-    }, []);
+    }, [data]);
   const templateParams={
     from_name:"Vaibhav Singh",
     to_name :'',
@@ -55,6 +55,23 @@ export default function BloodDonorDetails() {
         }
       );
     }
+
+    const approve=(DonorID)=>{
+      axios.patch(`https://localhost:44314/api/BloodDonor/${DonorID}`,{isapproved:true})
+     .then(response => {
+       console.log("Status: ", response.status);
+       console.log("Data: ", response.data);
+       //alert(response)
+       //alert()
+       setdata(data.filter((c)=> DonorID !==c.DonorID));
+      // alert(data)
+      
+     }).catch(error => {
+       console.error('Something went wrong!', error);
+       
+     })
+    }
+   
     return (
       <div style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"})`
       , position: 'absolute',
@@ -70,7 +87,7 @@ export default function BloodDonorDetails() {
  
       {/*} <Container  color='secondary' style={{ width: '600px',ml:0 }} className="m-1">*/}
           <h5>Blood Donor Details</h5>
-          <Table responsive striped bordered hover size="sm" variant="secondary" cellPadding={10} cellSpacing={10} style={{ width: '700px',ml:0 }}>
+          <Table responsive striped bordered hover size="sm" variant="secondary" cellPadding={3} cellSpacing={3} style={{ width: '700px',ml:0 }}>
             <thead>
  
               <tr>
@@ -120,10 +137,10 @@ export default function BloodDonorDetails() {
                     console.log(err);
                     window.alert(err)
                 })
-                }} >Reject</Button></td>
+                }} >{item.isapproved?'Cancle':'Reject'}</Button></td>
                 <td><Button 
                 onClick={()=>{
-                
+                  approve(item.DonoorID)
                   emailjs.send('service_b8mbf8v',
                   'template_3tc327p', 
                   {
@@ -142,13 +159,13 @@ export default function BloodDonorDetails() {
                     window.alert(err)
                 })
                 }}
-                >Approve</Button></td>
+                >{item.isapproved?'Approved':'Approve'}</Button></td>
               </tr>)}
             </tbody>
           </Table>
  
         {/*</Container>*/}
-        <Button variant="warning"> <Link to="/bloodcamp" tag="a" action >Back</Link></Button>
+        <Button variant="warning"> <Link to="adminhome/bloodcamp" tag="a" action >Back</Link></Button>
       </div>
       
  

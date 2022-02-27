@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { Col, Container, Row, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import ReactWhatsapp from 'react-whatsapp';
 export default function Contactus() {
   return (
     <div style={{ backgroundImage: `url(${"https://media.istockphoto.com/photos/male-nurse-taking-blood-sample-of-child-patient-n-clinic-picture-id1306247421?b=1&k=20&m=1306247421&s=170667a&w=0&h=PpxCAI3g_Qtvdb23BqI_oMfZi5b3joN9j2CKgeLyoGI="})`
@@ -16,7 +17,7 @@ export default function Contactus() {
     display: 'block',
     marginTop:0
     }}>
-      <h4>Dashboard</h4>
+      <h4>Contactus</h4>
       <Container>
         <Row>
 
@@ -63,7 +64,7 @@ export default function Contactus() {
               <Col>
               <Card style={{ width: '100rem' }} bg='warning'>
                 <Card.Body>
-                 <Card.Link href="">Kuku</Card.Link>
+                 <Card.Link href="">Kooapp</Card.Link>
                 </Card.Body>
               </Card> </Col>
           </Row>
@@ -72,7 +73,7 @@ export default function Contactus() {
       </Container>
       <Container className='my-3 '>
      
-      
+      <ReactWhatsapp number="91-735-574-2029" message="Hello World!!!" >message</ReactWhatsapp>
      </Container>
     </div>
   )

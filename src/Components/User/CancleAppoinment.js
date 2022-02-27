@@ -11,11 +11,14 @@ export default function CancleAppointmentPage() {
     const response = await fetch(
         `https://localhost:44314/api/appointment/searchappointmentdetails?search=${search}`      
       );                                                  ////https://api.chucknorris.io/jokes/random
-     const data = await response.json();
+     const data = await response.json();                 // `https://localhost:44314/api/appointment/searchappointmentdetails?search=${search}` 
       setdata(data); 
+      window.alert(data.message)
       //toast.success("data loaded successfully");
       console.log(data)
     };
+
+
     const [search,setsearch]=useState("");
    
 
@@ -108,7 +111,7 @@ export default function CancleAppointmentPage() {
   </thead>
   <tbody >
       {
-         data && data.map(item =>  <tr key={item.appointment_ID}>
+         data.length>0 && data.map(item =>  <tr key={item.appointment_ID}>
         <td>{item.patientName}</td>
         <td>{item.email}</td>
         <td>{item.Speciality}</td>
@@ -117,7 +120,7 @@ export default function CancleAppointmentPage() {
         <td>{item.date}</td>
         <td>{item.time}</td>
         <td><Button size='small' onClick={()=>deletedata(item.appointment_ID)} >Cancle</Button></td>
-        <td><Button onClick={()=> window.location = `/reschedule-appointment/${item.appointment_ID}`} >Reschedule</Button></td>
+        <td><Button onClick={()=> window.location = `/userhome/reschedule-appointment/${item.appointment_ID}`} >Reschedule</Button></td>
         {/*<td><IconButton onClick={deletedata(item.PatientID)}><DeleteIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
         {/*<td><IconButton  ><EditIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
        

@@ -42,7 +42,7 @@ export default function UpdatePatient() {
       console.log("Status: ", response.status);
       console.log("Data: ", response.data);
       window.alert("patient data updated")
-      window.location = "/adminuser"
+      window.location = "/userhome"
     }).catch(error => {
       console.error('Something went wrong!', error);
       window.alert("Something Wrong: Doctor data not updated Please enter valid details")
@@ -65,6 +65,7 @@ export default function UpdatePatient() {
     };
 
     const [data,setdata]=useState([])
+    
 const fetchPost = async () => {
   console.log("created")
 const response = await fetch(
@@ -74,6 +75,7 @@ console.log("working")
 const data = await response.json();
 console.log(data,"Data Entered")
 setdata(data);
+setpatient(data)
 //toast.success("data loaded successfully");
 console.log(data)
 
@@ -165,7 +167,7 @@ fetchPost();
         setpatient({...patient,gender:e.target.value})
       }}/>
     */}
-    <Form.Select aria-label="Select Gender" defaultValue={data.gender} name="gender"  onChange={(e)=>{
+    <Form.Select aria-label="Select Gender" value={data.gender} defaultValue={data.gender} name="gender"  onChange={(e)=>{
       setpatient({...patient,gender:e.target.value})
     }} >
     <option>Select gender</option>
@@ -206,7 +208,7 @@ fetchPost();
     <Col sm={8}>
     <Form.Group className="mb-3" controlId="Ward">
     
-    <Form.Select aria-label="Select Ward" defaultValue={data.Ward} name="Ward"  onChange={(e)=>{
+    <Form.Select aria-label="Select Ward" value={data.Ward} defaultValue={data.Ward} name="Ward"  onChange={(e)=>{
       setpatient({...patient,Ward:e.target.value})
     }} >
     <option>Select Ward</option>

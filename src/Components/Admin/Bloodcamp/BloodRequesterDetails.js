@@ -43,7 +43,21 @@ export default function BloodRequesterDetails() {
           }
         );
       }
-   
+      const approve=(RequestID,isactive)=>{
+        axios.patch(`https://localhost:44314/api/BloodRequest/${RequestID}`,{isapproved:true,IsActive:isactive})
+       .then(response => {
+         console.log("Status: ", response.status);
+         console.log("Data: ", response.data);
+         //alert(response)
+         //alert()
+         setdata(data.filter((c)=> RequestID !==c.RequestID));
+        // alert(data)
+        
+       }).catch(error => {
+         console.error('Something went wrong!', error);
+         
+       })
+      }
     return (
       <div style={{ backgroundImage: `url(${"https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"})`
       , position: 'absolute',
@@ -108,9 +122,10 @@ export default function BloodRequesterDetails() {
             console.log(err);
             window.alert(err)
         })
-             deletedata(item.RequestID)}} >Reject</Button></td>
+             deletedata(item.RequestID)}} >{item.isapproved?'Cancle':'Reject'}</Button></td>
                 <td><Button 
                 onClick={()=>{
+                  approve(item.RequestID,item.IsActive)
                   emailjs.send('service_b8mbf8v',
           'template_3tc327p', 
           {
@@ -130,12 +145,13 @@ export default function BloodRequesterDetails() {
         })
 
                 }}
-                >Approve</Button></td>
+                >
+                {item.isapproved?'Approved':'Approve'}</Button></td>
               </tr>)}
             </tbody>
           </Table>
        {/*} </Container>*/}
-       <Button variant="warning"> <Link to="/bloodcamp" tag="a" action className="text-light">Back</Link></Button>
+       <Button variant="warning"> <Link to="/adminhome/bloodcamp" tag="a" action className="text-light">Back</Link></Button>
       </div>
       
  

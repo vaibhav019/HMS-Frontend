@@ -51,7 +51,7 @@ export default function BloodRequestPage() {
     }}>
     
     <Container fluid className='mb-3 p-3'><h4>Application Form for Blood Receiver</h4>
-    <Link to="/search-blood-request" tag="a" action >Show Previous History</Link>
+    <Link to="/userhome/search-blood-request" tag="a" action >Show Previous History</Link>
     </Container>
    
     <Container fluid className="ml-3" >
@@ -68,7 +68,7 @@ export default function BloodRequestPage() {
   </Form.Group>
   </Col>
 
-  <Col sm={2}></Col>
+  
  
   <Col sm={4}>
   <Form.Group className="mb-3" controlId="RequestorAge">
@@ -79,6 +79,7 @@ export default function BloodRequestPage() {
     }}/>
   </Form.Group>
   </Col>
+  <Col sm={4}></Col>
   </Row>
  
   <Row>
@@ -97,7 +98,7 @@ export default function BloodRequestPage() {
   </Col>
 
 
-<Col sm={2}></Col>
+
  
 <Col sm={4}>
   <Form.Group className="mb-3" controlId="RequestorPhoneNumber">
@@ -108,6 +109,7 @@ export default function BloodRequestPage() {
     }}/>
   </Form.Group>
   </Col>
+  <Col sm={4}></Col>
   </Row>
 
   <Row>
@@ -121,7 +123,7 @@ export default function BloodRequestPage() {
   </Form.Group>
   </Col>
 
-  <Col sm={2}></Col>
+
 
 <Col sm={4}><Form.Group className="mb-3" controlId="RequestorAddress">
  
@@ -130,6 +132,7 @@ export default function BloodRequestPage() {
     setRequestor({...Request,RequestorAddress:e.target.value})
   }}/>
   </Form.Group> </Col>
+  <Col sm={4}></Col>
   </Row>
  
 
@@ -152,7 +155,7 @@ export default function BloodRequestPage() {
   </Form.Group>
   </Col>
 
-  <Col sm={2}></Col> 
+ 
 
   <Col sm={4}><Form.Group className="mb-3" controlId="RequestedOn">
   <Form.Control type='date' rows={2} id="Date"  placeholder="Enter Date" name="RequestedOn" 
@@ -160,10 +163,11 @@ export default function BloodRequestPage() {
     setRequestor({...Request,RequestedOn:e.target.value})
   }}/>
   </Form.Group> </Col>
+  <Col sm={4}></Col>
   </Row>
 
 <Row>
-  <Col sm={1}>
+  <Col sm={4}>
   <Form.Group className="mb-3" controlId="IsActive">
     <Form.Check type="checkbox" label="IsActive"
      onChange={(e)=>{
@@ -171,9 +175,10 @@ export default function BloodRequestPage() {
     }}/>
   </Form.Group>
   </Col>
+  <Col sm={8}></Col>
    </Row>
  
-  <Col sm={8}></Col>
+  
     <Row>
     <Col><Button type="submit" variant="primary">Submit</Button>{' '}<Button type="reset" variant="primary">Reset</Button>{' '}</Col>
     <Col></Col>

@@ -11,6 +11,7 @@ export default function CancelVaccination() {
       );                                                  ////https://api.chucknorris.io/jokes/random
      const data = await response.json();
       setdata(data);
+      window.alert(data.message)
       //toast.success("data loaded successfully");
       console.log(data)
     };
@@ -105,7 +106,7 @@ export default function CancelVaccination() {
         </tr>
     </thead>
     <tbody >
-        {data && data.map(item => <tr key={item.vaccine_ID}>
+        {data.length>0 && data.map(item => <tr key={item.vaccine_ID}>
             <td>{item.fullName}</td>
             <td>{item.phoneNumber}</td>
             <td>{item.email}</td>

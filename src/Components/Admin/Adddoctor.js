@@ -50,6 +50,7 @@ export default function Adddoctor() {
       //   email: data.get('email'),
       //   password: data.get('password'),
       // });
+      
     };
 
   return (

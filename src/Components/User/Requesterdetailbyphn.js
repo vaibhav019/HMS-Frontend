@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {Container,Form,FormControl,Button,} from 'react-bootstrap';
+import {Container,Form,FormControl,Button, Badge,} from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import axios from 'axios'
 export default function Requesterdetailbyphn() {
@@ -7,7 +7,7 @@ export default function Requesterdetailbyphn() {
  const [data, setdata] = useState([
  
   ]);
-  var heading = ['Name','Age','Gender','PhoneNumber', 'Email', 'Address', 'Requested BloodType','Requested On','Active'];
+  var heading = ['Name','Age','Gender','PhoneNumber', 'Email', 'Address', 'Requested BloodType','Requested On','Active','Action'];
  
   const fetchPost = async (search) => {
     const response = await fetch(
@@ -128,7 +128,7 @@ export default function Requesterdetailbyphn() {
                 <td>{item.RequestedOn}</td>
                 <td>{(item.IsActive)?'yes':'No'}</td>
         <td><Button size='small' style={{width:'130px'}}
-        onClick={()=>{axios.patch(`https://localhost:44314/api/BloodRequest/${item.RequestID}`, {IsActive:false,isapproved:item.isapproved})
+        onClick={()=>{axios.patch(`https://localhost:44314/api/BloodRequest/${item.RequestID}`, {IsActive:!item.IsActive,isapproved:item.isapproved})
         .then(response => {
           console.log("Status: ", response.status);
           console.log("Data: ", response.data);
@@ -142,7 +142,10 @@ export default function Requesterdetailbyphn() {
         >change status</Button></td>
         {/*<td><IconButton onClick={deletedata(item.PatientID)}><DeleteIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
         {/*<td><IconButton  ><EditIcon sx={{ color: pink[500] }}/></IconButton></td>*/}
-        
+        <td><Badge bg="warning" text="dark">
+        {item.isapproved?'Approved':'Not Approved'}
+      </Badge>{' '}</td>
+      
         </tr>)}
      
   </tbody>

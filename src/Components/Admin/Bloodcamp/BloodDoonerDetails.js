@@ -29,7 +29,7 @@ export default function BloodDonorDetails() {
     };
     useEffect(() => {
       fetchPost();
-    }, [data]);
+    }, []);
   const templateParams={
     from_name:"Vaibhav Singh",
     to_name :'',
@@ -130,13 +130,14 @@ export default function BloodDonorDetails() {
                   }, 
                   'user_IQODLOdj6sRnQAnI9S87a').then(res => {
                     console.log(res);
-                    deletedata(item.DonorID)
+                    //deletedata(item.DonorID)
                     window.alert("email sent to donor regarding approvement")
                 })
                 .catch(err => {
                     console.log(err);
                     window.alert(err)
                 })
+                deletedata(item.DonorID)
                 }} >{item.isapproved?'Cancle':'Reject'}</Button></td>
                 <td><Button 
                 onClick={()=>{

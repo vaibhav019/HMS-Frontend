@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {Container,Form,FormControl,Button,} from 'react-bootstrap';
+import {Container,Form,FormControl,Button, Badge,} from 'react-bootstrap';
 import axios from 'axios'
 import emailjs from 'emailjs-com';
 export default function Donordetailbyphn() {
@@ -20,7 +20,7 @@ export default function Donordetailbyphn() {
         }
     )
 }
-  var heading = ['Name','Age','Gender', 'Address', 'BloodType','PhoneNumber', 'Email','Weight', 'IsHealthy'];
+  var heading = ['Name','Age','Gender', 'Address', 'BloodType','PhoneNumber', 'Email','Weight', 'IsHealthy','Action'];
  
   const fetchPost = async (search) => {
     const response = await fetch(
@@ -108,7 +108,7 @@ export default function Donordetailbyphn() {
                 <td>{item.DonorWeight}</td>
                 <td>{(item.Ishealthy && item.DonorWeight>50)?'yes':'No'}</td>
         <td>
-        {(!item.Ishealthy && item.DonorWeight<=50)?<Button size='small' onClick={()=>{
+        {(!item.Ishealthy || item.DonorWeight<=50)?<Button size='small' onClick={()=>{
           emailjs.send('service_b8mbf8v',
           'template_3tc327p', 
           {
@@ -128,10 +128,12 @@ export default function Donordetailbyphn() {
             window.alert(err)
         })
           deletedata(item.DonorID)
-        }} >Reject</Button>:''}
+        }} >Cancle</Button>:''}
 
         </td>
-       
+       <td><Badge bg="warning" text="dark">
+       {item.isapproved?'Approved':'Not Approved'}
+     </Badge>{' '}</td>
         
         </tr>)}
      

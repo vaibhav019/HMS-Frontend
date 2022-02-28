@@ -130,8 +130,8 @@ export default function GetApointmentPage() {
             console.log(err);
             window.alert(err)
         })
-
-                        }}>{item.isapproved?'Accepted':'Accept'}</Button></td>
+     
+                        }}  disabled={item.isapproved?true:false}>{item.isapproved?'Accepted':'Accept'}</Button></td>
                         <td><Button onClick={()=>{
                           emailjs.send('service_b8mbf8v',
           'template_3tc327p', 
